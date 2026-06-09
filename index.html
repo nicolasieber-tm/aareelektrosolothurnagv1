@@ -263,7 +263,9 @@
   .contact-grid{display:grid;grid-template-columns:1fr;gap:40px}
   @media(min-width:768px){.contact-grid{grid-template-columns:1fr 1fr;gap:48px}}
   .contact-info .item{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
-  .contact-info .iw{flex:0 0 48px;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.2rem}
+  .contact-info .iw{flex:0 0 48px;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.2rem;transition:transform .2s,box-shadow .2s}
+  a.iw{cursor:pointer}
+  a.iw:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(243,111,33,.18)}
   .contact-info .item strong{display:block;font-size:15px;font-weight:500}
   .contact-info .item span{color:var(--grey);font-size:14px;font-weight:300}
   form{border-radius:20px;padding:34px}
@@ -501,9 +503,9 @@
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="item"><span class="iw liquid-glass">📍</span><div><strong>Aare-Elektro Solothurn AG</strong><span>Burgunderstrasse 13, 4562 Biberist</span></div></div>
-        <div class="item"><span class="iw liquid-glass">📞</span><div><strong>Telefon</strong><span><a href="tel:0326258000">032 625 80 00</a></span></div></div>
-        <div class="item"><span class="iw liquid-glass">✉️</span><div><strong>E-Mail</strong><span><a href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></span></div></div>
+        <div class="item"><a href="https://www.google.com/maps/dir/?api=1&destination=Aare-Elektro+Solothurn+AG,+Burgunderstrasse+13,+4562+Biberist" target="_blank" rel="noopener" class="iw liquid-glass" aria-label="Route in Google Maps öffnen">📍</a><div><strong>Aare-Elektro Solothurn AG</strong><span>Burgunderstrasse 13, 4562 Biberist</span></div></div>
+        <div class="item"><a href="tel:0326258000" class="iw liquid-glass" aria-label="Jetzt anrufen: 032 625 80 00">📞</a><div><strong>Telefon</strong><span><a href="tel:0326258000">032 625 80 00</a></span></div></div>
+        <div class="item"><a href="mailto:info@aare-elektro.ch" class="iw liquid-glass" aria-label="E-Mail schreiben an info@aare-elektro.ch">✉️</a><div><strong>E-Mail</strong><span><a href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></span></div></div>
         <div class="item"><span class="iw liquid-glass">🕐</span><div><strong>Erreichbarkeit</strong><span>Mo–Fr · 07:30–17:00 Uhr</span></div></div>
       </div>
       <form class="liquid-glass reveal d1" onsubmit="event.preventDefault();this.querySelector('.btn').childNodes[0].nodeValue='Vielen Dank! ';">
