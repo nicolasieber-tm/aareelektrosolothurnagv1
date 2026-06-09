@@ -141,6 +141,7 @@
   .nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px}
   @media(min-width:1024px){.nav{padding:0 48px}}
   .nav-logo{display:flex;align-items:center;gap:12px}
+  .logo-svg{height:30px;width:auto;display:block}
   .logo-circle{width:46px;height:46px;border-radius:9999px;display:grid;place-items:center}
   .logo-circle span{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--orange);line-height:1}
   .logo-word{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--ink)}
@@ -168,7 +169,9 @@
   .sec-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
   .sec-bg::after{content:"";position:absolute;inset:0;}
   .hero .sec-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.68) 0%,rgba(255,255,255,.30) 36%,rgba(255,255,255,.42) 72%,#fff 100%)}
-  .capabilities .sec-bg::after{background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.5) 22%,rgba(255,255,255,.45) 55%,rgba(255,255,255,.82) 100%)}
+  .capabilities .sec-bg{background:var(--bg2);display:flex;align-items:center;justify-content:center}
+  .capabilities .sec-bg::after{background:linear-gradient(180deg,rgba(244,245,246,.25) 0%,rgba(244,245,246,0) 38%,rgba(244,245,246,.55) 100%)}
+  .bg-logo{width:min(80%,860px);height:auto;display:block}
 
   /* ===== HERO ===== */
   .hero-inner{position:relative;z-index:10;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 30px}
@@ -298,9 +301,12 @@
 <!-- ===== NAV ===== -->
 <header>
   <nav class="nav">
-    <a href="#start" class="nav-logo" aria-label="Aare Elektro Solothurn">
-      <span class="logo-circle liquid-glass"><span>a</span></span>
-      <span class="logo-word">Aare Elektro</span>
+    <a href="#start" class="nav-logo liquid-glass" style="border-radius:9999px;padding:8px 16px" aria-label="Aare Elektro Solothurn">
+      <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
+        <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
+        <text x="66" y="33" font-family="Barlow,Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+        <text x="67" y="54" font-family="Barlow,Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
+      </svg>
     </a>
     <div class="nav-center liquid-glass">
       <a class="lnk" href="#start">Start</a>
@@ -364,7 +370,13 @@
 
 <!-- ===== SECTION 2: DIENSTLEISTUNGEN (Panorama) ===== -->
 <section class="fullsec capabilities" id="leistungen">
-  <div class="sec-bg"><img src="images/panorama-solothurn.png" alt="Panorama der Altstadt Solothurn an der Aare"></div>
+  <div class="sec-bg">
+    <svg class="bg-logo" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aare Elektro Solothurn Logo">
+      <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
+      <text x="66" y="33" font-family="Barlow,Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+      <text x="67" y="54" font-family="Barlow,Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
+    </svg>
+  </div>
   <div class="cap-inner">
     <div style="margin-bottom:auto">
       <div class="cap-kicker reveal">// Dienstleistungen</div>
@@ -531,8 +543,11 @@
     <div class="foot-grid">
       <div>
         <a href="#start" class="nav-logo" aria-label="Aare Elektro Solothurn">
-          <span class="logo-circle liquid-glass"><span>a</span></span>
-          <span class="logo-word">Aare Elektro</span>
+          <svg class="logo-svg" style="height:40px" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
+            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
+            <text x="66" y="33" font-family="Barlow,Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+            <text x="67" y="54" font-family="Barlow,Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
+          </svg>
         </a>
         <p>Ihr verlässlicher Elektropartner in der Region Solothurn – mit Leidenschaft und Freude am Beruf.</p>
         <div class="socials"><a href="https://www.facebook.com/Aareelektro" target="_blank" rel="noopener" class="liquid-glass" title="Facebook">f</a><a href="https://www.instagram.com/aareelektro/" target="_blank" rel="noopener" class="liquid-glass" title="Instagram">ig</a></div>
