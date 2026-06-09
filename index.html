@@ -85,303 +85,434 @@
 }
 </script>
 
+<!-- ===== Font ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --orange:#F36F21;
     --orange-dark:#D85B12;
     --ink:#15181D;
-    --ink-soft:#3a3f47;
     --grey:#6b7280;
     --line:#e7e9ee;
     --bg:#ffffff;
-    --bg-soft:#f6f7f9;
-    --radius:18px;
-    --shadow:0 10px 40px rgba(20,24,29,.08);
-    --shadow-lg:0 24px 70px rgba(20,24,29,.14);
-    --maxw:1200px;
+    --bg-soft:#f5f5f5;
+    --bg-hero:#EFEFEF;
+    --maxw:1440px;
+    --ease:cubic-bezier(0.25,0.1,0.25,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;
-  }
-
-  /* ---------- Scroll-Animationen (Einblenden) ---------- */
-  .reveal{opacity:0;transform:translateY(44px) scale(.98);filter:blur(8px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease}
-  .reveal.in{opacity:1;transform:none;filter:blur(0)}
-  .reveal.d1{transition-delay:.12s}
-  .reveal.d2{transition-delay:.24s}
-  .reveal.d3{transition-delay:.36s}
-  .reveal.d4{transition-delay:.48s}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;filter:none;transition:none}
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  h1,h2,h3{line-height:1.12;letter-spacing:-.02em;font-weight:800}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  @media(min-width:640px){.wrap{padding:0 32px}}
+  @media(min-width:1024px){.wrap{padding:0 48px}}
 
-  /* ---------- Header ---------- */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-  .logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
-  .logo .mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));display:grid;place-items:center;color:#fff;font-size:1.2rem;box-shadow:0 6px 18px rgba(243,111,33,.35)}
-  .logo small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.18em;color:var(--grey);text-transform:uppercase}
-  .logo-svg{height:44px;width:auto;display:block}
-  footer .logo-svg{height:46px}
-  nav.menu{display:flex;gap:34px;align-items:center}
-  nav.menu a{font-size:.93rem;font-weight:600;color:var(--ink-soft);transition:color .2s;position:relative}
-  nav.menu a:hover{color:var(--orange)}
-  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:#fff;font-weight:700;font-size:.92rem;padding:13px 22px;border-radius:999px;transition:transform .18s,box-shadow .18s,background .18s;box-shadow:0 8px 22px rgba(243,111,33,.3)}
-  .btn:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(243,111,33,.4)}
-  .btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
-  .btn.ghost:hover{border-color:var(--orange);color:var(--orange);background:transparent}
-  .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
-  .menu-toggle span{width:24px;height:2.5px;background:var(--ink);border-radius:2px}
+  /* ---------- Reveal-Animation ---------- */
+  .reveal{opacity:0;transform:translateY(40px) scale(.98);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s ease}
+  .reveal.in{opacity:1;transform:none;filter:blur(0)}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:88px 0 96px}
-  .hero::before{content:"";position:absolute;top:-180px;right:-180px;width:560px;height:560px;background:radial-gradient(circle,rgba(243,111,33,.16),transparent 65%);border-radius:50%}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
-  .hero h1{font-size:clamp(2.4rem,5vw,3.85rem);margin:20px 0 22px}
+  /* ---------- Text-Roll Button ---------- */
+  .btn-roll{display:inline-flex;align-items:center;gap:14px;border-radius:9999px;font-size:13px;font-weight:500;
+    padding:8px 8px 8px 22px;cursor:pointer;transition:background .3s,box-shadow .3s;line-height:20px;white-space:nowrap}
+  @media(min-width:640px){.btn-roll{font-size:14px;padding-left:24px}}
+  .btn-roll .roll{display:flex;flex-direction:column;height:20px;overflow:hidden;transition:transform .5s var(--ease)}
+  .btn-roll .roll span{display:block;height:20px;line-height:20px}
+  .btn-roll:hover .roll{transform:translateY(-20px)}
+  .arrow-circle{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff;flex:0 0 auto;transition:transform .5s var(--ease)}
+  @media(min-width:640px){.arrow-circle{width:32px;height:32px}}
+  .btn-roll:hover .arrow-circle{transform:rotate(-45deg)}
+  .ar{width:15px;height:15px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn-orange:hover{background:var(--orange-dark)}
+  .btn-orange .ar{stroke:var(--orange)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#000}
+  .btn-dark .ar{stroke:var(--ink)}
+
+  /* ---------- Badge-Zeile ---------- */
+  .badge-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+  @media(min-width:640px){.badge-row{margin-bottom:32px}}
+  .br-num{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center}
+  @media(min-width:640px){.br-num{width:28px;height:28px;font-size:12px}}
+  .br-label{font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:9999px;padding:5px 14px}
+  @media(min-width:640px){.br-label{font-size:13px;padding:6px 16px}}
+
+  .hidden-sm{display:none}
+  @media(min-width:640px){.hidden-sm{display:inline}}
+  .h-display{font-size:clamp(1.75rem,7vw,4.2rem);font-weight:500;line-height:1.08;letter-spacing:-.03em;color:var(--ink)}
+  @media(min-width:640px){.h-display{font-size:clamp(2.5rem,5vw,4.2rem)}}
+  .h-section{font-size:clamp(1.5rem,4vw,3.2rem);font-weight:500;line-height:1.12;letter-spacing:-.02em;color:var(--ink)}
+
+  /* ---------- Navigation (Pill) ---------- */
+  .nav-fixed{position:fixed;top:0;left:0;right:0;z-index:40}
+  .nav-fixed .wrap{padding-top:8px;padding-bottom:8px}
+  @media(min-width:640px){.nav-fixed .wrap{padding-top:12px;padding-bottom:12px}}
+  .navpill{background:#fff;border-radius:9999px;display:flex;align-items:center;justify-content:space-between;
+    padding:5px;box-shadow:0 4px 24px rgba(20,24,29,.08)}
+  .nav-left{display:flex;align-items:center;gap:20px;padding-left:6px}
+  .nav-logo .logo-svg{height:26px;width:auto;display:block}
+  .nav-links{display:none;align-items:center;gap:24px}
+  .nav-links a{font-size:14px;color:var(--ink);transition:color .3s}
+  .nav-links a:hover{color:var(--grey)}
+  .nav-right{display:none;align-items:center;gap:16px;padding-right:4px}
+  .nav-status{font-size:13px;color:var(--grey)}
+  .nav-clock{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--grey)}
+  .nav-clock svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .menu-toggle{display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:9999px;
+    padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+  .menu-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+  @media(min-width:768px){
+    .nav-links{display:flex}
+    .nav-right{display:flex}
+    .menu-toggle{display:none}
+  }
+  @media(min-width:1024px){.nav-status{display:inline}}
+  @media(max-width:1023px){.nav-status{display:none}}
+
+  /* Mobile-Menü */
+  .mobile-menu{position:fixed;inset:0;z-index:50;display:none}
+  .mobile-menu.open{display:block}
+  .mm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .4s ease}
+  .mobile-menu.open .mm-backdrop{opacity:1}
+  .mm-sheet{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:22px;padding:26px 24px 24px;
+    transform:translateY(110%);transition:transform .5s cubic-bezier(0.32,0.72,0,1)}
+  .mobile-menu.open .mm-sheet{transform:translateY(0)}
+  .mm-time{font-size:13px;color:var(--grey);border:1px solid var(--line);border-radius:9999px;padding:6px 14px;display:inline-flex;gap:6px;align-items:center;margin-bottom:22px}
+  .mm-time svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .mm-links{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+  .mm-links a{font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;background:var(--bg-hero);overflow:hidden;display:flex;flex-direction:column}
+  .hero-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(28px);
+    background:
+      radial-gradient(38% 48% at 18% 32%, rgba(243,111,33,.22), transparent 62%),
+      radial-gradient(42% 52% at 82% 22%, rgba(243,111,33,.14), transparent 60%),
+      radial-gradient(48% 58% at 62% 82%, rgba(243,111,33,.12), transparent 64%),
+      radial-gradient(60% 60% at 50% 50%, rgba(255,255,255,.4), transparent 70%);
+    animation:aurora 20s ease-in-out infinite alternate}
+  @keyframes aurora{
+    0%{transform:translate3d(0,0,0) scale(1)}
+    50%{transform:translate3d(-3%,2.5%,0) scale(1.1)}
+    100%{transform:translate3d(3.5%,-2%,0) scale(1.05)}
+  }
+  .hero-grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.45;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    background-size:200px}
+  .hero-inner{position:relative;z-index:20;flex:1;display:flex;flex-direction:column}
+  .hero-bottom{margin-top:auto;width:100%;max-width:var(--maxw);margin-left:auto;margin-right:auto;
+    padding:0 20px 56px}
+  @media(min-width:640px){.hero-bottom{padding:0 32px 64px}}
+  @media(min-width:1024px){.hero-bottom{padding:0 48px 80px}}
+  .hero-label{display:block;font-size:13px;letter-spacing:.04em;color:var(--ink);margin-bottom:20px}
+  @media(min-width:640px){.hero-label{font-size:14px;margin-bottom:32px}}
+  .hero h1{max-width:18ch}
   .hero h1 .hl{color:var(--orange)}
-  .hero p.lead{font-size:1.12rem;color:var(--ink-soft);max-width:520px;margin-bottom:32px}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .hero-stats{display:flex;gap:36px;margin-top:46px;flex-wrap:wrap}
-  .hero-stats .num{font-size:2rem;font-weight:800;color:var(--ink)}
-  .hero-stats .lbl{font-size:.82rem;color:var(--grey);font-weight:600}
-  .hero-media{position:relative}
-  .hero-media img{width:100%;height:520px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow-lg)}
-  .hero-badge{position:absolute;left:-26px;bottom:40px;background:#fff;border-radius:16px;padding:18px 22px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
-  .hero-badge .ico{width:46px;height:46px;border-radius:12px;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:1.3rem}
-  .hero-badge strong{display:block;font-size:1.02rem}
-  .hero-badge span{font-size:.8rem;color:var(--grey)}
+  .hero-cta-row{display:flex;flex-direction:column;gap:16px;margin-top:32px;align-items:flex-start}
+  @media(min-width:640px){.hero-cta-row{flex-direction:row;align-items:center;gap:20px;margin-top:48px}}
 
-  /* ---------- Trust strip ---------- */
-  .strip{background:var(--ink);color:#fff;padding:26px 0}
-  .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-  .strip p{font-weight:600;font-size:1.02rem}
-  .strip .orange-word{color:var(--orange)}
+  /* Partner-Badge */
+  .partner-badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:6px;padding:8px 12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);transition:box-shadow .3s}
+  .partner-badge:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
+  .pb-star{width:20px;height:20px;fill:var(--orange);flex:0 0 auto}
+  @media(min-width:640px){.pb-star{width:24px;height:24px}}
+  .pb-text{font-size:13px;font-weight:500}
+  @media(min-width:640px){.pb-text{font-size:14px}}
+  .pb-tag{font-size:10px;background:var(--ink);color:#fff;padding:2px 7px;border-radius:4px;font-weight:500}
+  @media(min-width:640px){.pb-tag{font-size:11px}}
 
-  /* ---------- Services ---------- */
-  section{padding:96px 0}
+  /* ---------- Strip ---------- */
+  .strip{background:var(--ink);color:#fff;padding:24px 0}
+  .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .strip p{font-size:15px;font-weight:400}
+  .strip .orange-word{color:var(--orange);font-weight:600}
+  .strip a{color:#fff}.strip a.o{color:var(--orange)}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:64px 0}
+  @media(min-width:640px){section.block{padding:80px 0}}
+  @media(min-width:1024px){section.block{padding:120px 0}}
   section[id]{scroll-margin-top:90px}
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 56px}
-  .sec-head h2{font-size:clamp(2rem,3.6vw,2.7rem);margin:14px 0 16px}
-  .sec-head p{color:var(--ink-soft);font-size:1.05rem}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-  .card .img{height:200px;overflow:hidden}
-  .card .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .card:hover .img img{transform:scale(1.07)}
-  .card .body{padding:26px 24px 28px}
-  .card .body h3{font-size:1.18rem;margin-bottom:10px}
-  .card .body p{color:var(--grey);font-size:.94rem}
-  .card .more{margin-top:16px;font-weight:700;font-size:.88rem;color:var(--orange);display:inline-flex;align-items:center;gap:6px}
+  .sec-intro{margin-bottom:48px}
+  @media(min-width:1024px){.sec-intro{margin-bottom:80px}}
 
-  /* ---------- About ---------- */
-  .about{background:var(--bg-soft)}
-  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center}
-  .about-media{position:relative}
-  .about-media img{width:100%;border-radius:var(--radius);box-shadow:var(--shadow)}
-  .about h2{font-size:clamp(2rem,3.4vw,2.6rem);margin:14px 0 22px}
-  .about p{color:var(--ink-soft);margin-bottom:16px}
-  .checks{list-style:none;margin-top:24px;display:grid;gap:14px}
-  .checks li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--ink)}
-  .checks .tick{flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.8rem;margin-top:2px}
+  /* Services cards */
+  .cards{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:768px){.cards{grid-template-columns:repeat(2,1fr);gap:24px}}
+  @media(min-width:1024px){.cards{grid-template-columns:repeat(3,1fr);gap:28px}}
+  .card{display:flex;flex-direction:column}
+  .card-media{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:329/246;background:var(--bg-soft)}
+  .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .card:hover .card-media img{transform:scale(1.05)}
+  .expand-btn{position:absolute;left:16px;bottom:16px;height:36px;width:36px;border-radius:9999px;background:#fff;
+    display:flex;align-items:center;gap:8px;padding:0 11px;overflow:hidden;white-space:nowrap;
+    transition:width .3s ease-in-out;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+  .card:hover .expand-btn{width:150px}
+  .eb-icon{flex:0 0 14px;display:grid;place-items:center;transition:transform .3s var(--ease)}
+  .eb-icon svg{width:14px;height:14px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-45deg);transition:transform .3s var(--ease)}
+  .card:hover .eb-icon svg{transform:rotate(0)}
+  .eb-text{font-size:13px;font-weight:500;opacity:0;transition:opacity .3s ease .1s}
+  .card:hover .eb-text{opacity:1}
+  .card-desc{font-size:13px;color:var(--grey);margin-top:16px;line-height:1.55}
+  @media(min-width:640px){.card-desc{font-size:14px}}
+  .card-title{font-size:14px;font-weight:600;color:var(--ink);margin-top:4px}
+  @media(min-width:640px){.card-title{font-size:15px}}
 
-  /* ---------- Team ---------- */
-  .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:840px;margin:0 auto}
-  .person{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;text-align:center;transition:transform .25s,box-shadow .25s}
-  .person:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-  .person .avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;display:grid;place-items:center;font-size:1.7rem;font-weight:800}
-  .person .avatar-img{width:128px;height:128px;border-radius:50%;object-fit:cover;margin:0 auto 18px;display:block;border:4px solid #fff;box-shadow:0 8px 22px rgba(20,24,29,.12)}
-  .person h3{font-size:1.2rem}
-  .person .role{color:var(--orange);font-weight:700;font-size:.85rem;margin:4px 0 10px;letter-spacing:.04em}
-  .person .qual{color:var(--grey);font-size:.88rem}
-  .person a{display:inline-block;margin-top:14px;color:var(--ink-soft);font-weight:600;font-size:.88rem;border-bottom:1.5px solid var(--orange)}
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+  @media(min-width:1024px){.about-grid{grid-template-columns:.95fr 1.05fr;gap:60px}}
+  .about-media{border-radius:18px;overflow:hidden;aspect-ratio:3/2}
+  .about-media img{width:100%;height:100%;object-fit:cover}
+  .about p.lead{font-size:16px;line-height:1.65;font-weight:500;color:var(--ink);margin:24px 0 28px}
+  .checks{list-style:none;margin-top:26px;display:grid;gap:14px}
+  .checks li{display:flex;gap:13px;align-items:flex-start;font-weight:500;color:var(--ink);font-size:15px}
+  .checks .tick{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.72rem;margin-top:2px}
 
-  /* ---------- CTA banner ---------- */
-  .cta-band{background:linear-gradient(120deg,var(--orange),var(--orange-dark));color:#fff;border-radius:26px;padding:58px 56px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;box-shadow:var(--shadow-lg)}
-  .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);max-width:560px}
-  .cta-band .btn{background:#fff;color:var(--orange);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-  .cta-band .btn:hover{background:var(--ink);color:#fff}
+  /* Team */
+  .team-grid{display:grid;grid-template-columns:1fr;gap:22px;max-width:840px;margin:0 auto}
+  @media(min-width:640px){.team-grid{grid-template-columns:1fr 1fr}}
+  .person{border:1px solid var(--line);border-radius:20px;padding:34px 30px;text-align:center;transition:box-shadow .3s,transform .3s}
+  .person:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(20,24,29,.10)}
+  .person .avatar-img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 18px}
+  .person h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .person .role{color:var(--orange);font-weight:500;font-size:12px;margin:6px 0 12px;letter-spacing:.04em;text-transform:uppercase}
+  .person .qual{color:var(--grey);font-size:14px}
+  .person a.mail{display:inline-block;margin-top:16px;color:var(--ink);font-weight:500;font-size:14px;border-bottom:1.5px solid var(--orange);padding-bottom:2px}
 
-  /* ---------- Contact ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-  .contact-info .item{display:flex;gap:16px;align-items:flex-start;margin-bottom:26px}
-  .contact-info .ico{flex:0 0 48px;width:48px;height:48px;border-radius:13px;background:var(--bg-soft);display:grid;place-items:center;font-size:1.25rem;color:var(--orange)}
-  .contact-info .item strong{display:block;font-size:1.02rem}
-  .contact-info .item span{color:var(--grey);font-size:.94rem}
-  form{background:var(--bg-soft);border-radius:var(--radius);padding:34px}
-  form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  label{font-weight:600;font-size:.85rem;display:block;margin:14px 0 6px}
-  input,textarea{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:11px;font-family:inherit;font-size:.95rem;background:#fff;transition:border .2s}
+  /* CTA band */
+  .cta-band{border-radius:26px;padding:54px 48px;display:flex;justify-content:space-between;align-items:center;gap:30px;
+    flex-wrap:wrap;background:linear-gradient(120deg,var(--orange),var(--orange-dark));color:#fff;
+    box-shadow:0 24px 70px rgba(243,111,33,.28)}
+  .cta-band h2{font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:500;letter-spacing:-.02em;max-width:600px;line-height:1.12}
+  .cta-band .btn-roll{background:#fff;color:var(--ink)}
+  .cta-band .btn-roll .arrow-circle{background:var(--orange)}
+  .cta-band .btn-roll .ar{stroke:#fff}
+
+  /* Contact */
+  .contact-panorama{width:100%;border-radius:18px;margin-bottom:48px;aspect-ratio:1200/170;object-fit:cover}
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:40px}
+  @media(min-width:768px){.contact-grid{grid-template-columns:1fr 1fr;gap:48px}}
+  .contact-info .item{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px}
+  .contact-info .iwrap{flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:var(--bg-soft);display:grid;place-items:center;font-size:1.2rem}
+  .contact-info .item strong{display:block;font-size:15px;font-weight:600}
+  .contact-info .item span{color:var(--grey);font-size:14px}
+  form{background:var(--bg-soft);border-radius:20px;padding:34px}
+  form .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{font-weight:500;font-size:13px;display:block;margin:14px 0 6px;color:var(--ink)}
+  input,textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font-family:inherit;font-size:14px;background:#fff;transition:border .2s}
   input:focus,textarea:focus{outline:none;border-color:var(--orange)}
-  form .btn{width:100%;justify-content:center;margin-top:22px;cursor:pointer;border:0;font-size:1rem}
+  form .btn-roll{margin-top:24px;border:0;width:100%;justify-content:center}
 
-  /* ---------- Footer ---------- */
+  /* Footer */
   footer{background:var(--ink);color:#c9ccd2;padding:64px 0 30px}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-  footer .logo{color:#fff}
-  footer .logo small{color:#8b8f97}
-  footer p{font-size:.92rem;margin-top:14px;max-width:300px}
-  footer h4{color:#fff;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media(min-width:768px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px}}
+  footer .logo-svg{height:30px}
+  footer p{font-size:14px;margin-top:16px;max-width:300px;color:#9aa0a8}
+  footer h4{color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:600}
   footer ul{list-style:none;display:grid;gap:10px}
-  footer ul a{font-size:.92rem;color:#c9ccd2;transition:color .2s}
+  footer ul a,footer ul li{font-size:14px;color:#9aa0a8;transition:color .2s}
   footer ul a:hover{color:var(--orange)}
-  .socials{display:flex;gap:10px;margin-top:18px}
-  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:background .2s}
+  .socials{display:flex;gap:10px;margin-top:20px}
+  .socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:background .2s;font-size:13px}
   .socials a:hover{background:var(--orange)}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:.85rem;color:#8b8f97;flex-wrap:wrap;gap:12px}
-  .foot-bottom a{color:#8b8f97}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:13px;color:#7f858d;flex-wrap:wrap;gap:12px}
   .foot-bottom a:hover{color:var(--orange)}
-
-  /* ---------- Responsive ---------- */
-  @media(max-width:920px){
-    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
-    .cards{grid-template-columns:1fr 1fr}
-    .hero-media img{height:380px}
-    .foot-grid{grid-template-columns:1fr 1fr}
-  }
-  @media(max-width:680px){
-    nav.menu{display:none}
-    .menu-toggle{display:flex}
-    .cards,.team-grid,.foot-grid{grid-template-columns:1fr}
-    section{padding:70px 0}
-    .cta-band{padding:40px 28px}
-    .hero{padding:56px 0 70px}
-    .hero-badge{left:0}
-  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="wrap nav">
-    <a href="#" class="logo" aria-label="Aare Elektro Solothurn">
-      <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
-        <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-        <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#58595B">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
-        <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#58595B">SOLOTHURN</text>
-      </svg>
-    </a>
-    <nav class="menu">
-      <a href="#start">Start</a>
-      <a href="#leistungen">Dienstleistungen</a>
-      <a href="#ueber">Über uns</a>
-      <a href="#team">Team</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-    <a href="#kontakt" class="btn">Offerte anfragen →</a>
-    <button class="menu-toggle"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<main>
-<!-- HERO -->
-<section class="hero" id="start">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow reveal">Der Elektriker von Solothurn</span>
-      <h1 class="reveal d1">Ihr <span class="hl">Elektriker</span> in Solothurn – mit Leidenschaft & Freude am Beruf.</h1>
-      <p class="lead reveal d2">Kompetente Beratung, professionelle Installationen und zuverlässiger Service – für Privatpersonen, Gewerbe, Läden und Industrie in der Region Solothurn.</p>
-      <div class="hero-cta reveal d3">
-        <a href="#kontakt" class="btn">Jetzt kontaktieren</a>
-        <a href="tel:0326258000" class="btn ghost">032 625 80 00</a>
-      </div>
-      <div class="hero-stats reveal d4">
-        <div><div class="num">7+</div><div class="lbl">Fachbereiche</div></div>
-        <div><div class="num">100%</div><div class="lbl">Region Solothurn</div></div>
-      </div>
-    </div>
-    <div class="hero-media reveal d2">
-      <img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_700,h_900,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_208.jpg" alt="Aare Elektro Elektroinstallationen">
-      <div class="hero-badge">
-        <span class="ico">✓</span>
-        <div><strong>Eidg. dipl. Fachleute</strong><span>Geprüfte Elektroinstallateure</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STRIP -->
-<div class="strip">
+<!-- ===== NAVIGATION ===== -->
+<div class="nav-fixed">
   <div class="wrap">
-    <p>Der Elektriker von Solothurn ist <span class="orange-word">orange</span>.</p>
-    <p>Jetzt kontaktieren: <a href="tel:0326258000" style="color:#fff"><strong>032 625 80 00</strong></a> · <a href="mailto:info@aare-elektro.ch" style="color:var(--orange)">info@aare-elektro.ch</a></p>
+    <nav class="navpill">
+      <div class="nav-left">
+        <a href="#start" class="nav-logo" aria-label="Aare Elektro Solothurn">
+          <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
+            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
+            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+            <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
+          </svg>
+        </a>
+        <div class="nav-links">
+          <a href="#leistungen">Dienstleistungen</a>
+          <a href="#ueber">Über uns</a>
+          <a href="#team">Team</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <span class="nav-status">Verfügbar für Projekte 2026</span>
+        <span class="nav-clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock">--:--</span> in Solothurn</span>
+        <a href="#kontakt" class="btn-roll btn-dark">
+          <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
+          <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menuOpen" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg> Menü
+      </button>
+    </nav>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section id="leistungen">
+<!-- Mobile-Menü -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-backdrop" id="menuClose"></div>
+  <div class="mm-sheet">
+    <span class="mm-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock2">--:--</span> in Solothurn</span>
+    <div class="mm-links">
+      <a href="#leistungen" data-close>Dienstleistungen</a>
+      <a href="#ueber" data-close>Über uns</a>
+      <a href="#team" data-close>Team</a>
+      <a href="#kontakt" data-close>Kontakt</a>
+    </div>
+    <a href="#kontakt" data-close class="btn-roll btn-orange" style="width:100%;justify-content:center">
+      <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
+      <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</div>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="start">
+  <div class="hero-aurora"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-bottom">
+      <span class="hero-label reveal">Aare Elektro Solothurn</span>
+      <h1 class="h-display reveal d1">Ihr <span class="hl">Elektriker</span> in Solothurn –<br class="hidden-sm"> mit Leidenschaft & Freude am Beruf.</h1>
+      <div class="hero-cta-row reveal d2">
+        <a href="#kontakt" class="btn-roll btn-orange">
+          <span class="roll"><span>Jetzt kontaktieren</span><span>Jetzt kontaktieren</span></span>
+          <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a>
+        <div class="partner-badge">
+          <svg class="pb-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z"/></svg>
+          <span class="pb-text">Eidg. dipl. Fachleute</span>
+          <span class="pb-tag">Geprüft</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STRIP ===== -->
+<div class="strip">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Unsere Dienstleistungen</span>
-      <h2>Alles aus einer Hand</h2>
-      <p>Von der Planung über die Installation bis zum Unterhalt – wir begleiten Ihr Projekt mit Fachwissen und Engagement.</p>
+    <p>Der Elektriker von Solothurn ist <span class="orange-word">orange</span>.</p>
+    <p>Jetzt kontaktieren: <a href="tel:0326258000"><strong>032 625 80 00</strong></a> · <a class="o" href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></p>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="block" id="leistungen" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-intro reveal">
+      <div class="badge-row"><span class="br-num">1</span><span class="br-label">Unsere Dienstleistungen</span></div>
+      <h2 class="h-section">Alles aus einer Hand –<br> für Privat, Gewerbe & Industrie.</h2>
     </div>
     <div class="cards">
       <a class="card reveal" href="dienstleistungen.html#elektroinstallationen">
-        <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_208.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn"></div>
-        <div class="body"><h3>Elektroinstallationen</h3><p>Fachgerechte Installationen für Neubau, Umbau und Sanierung – sauber, sicher und normgerecht.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_208.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Fachgerechte Installationen für Neubau, Umbau und Sanierung – sauber, sicher und normgerecht.</p>
+        <p class="card-title">Elektroinstallationen</p>
       </a>
       <a class="card reveal d1" href="dienstleistungen.html#service">
-        <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_042.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn"></div>
-        <div class="body"><h3>Service & Kundendienst</h3><p>Schnelle Hilfe bei Störungen und Reparaturen – verlässlich für Privat und Gewerbe.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_042.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Schnelle Hilfe bei Störungen und Reparaturen – verlässlich für Privat und Gewerbe.</p>
+        <p class="card-title">Service & Kundendienst</p>
       </a>
       <a class="card reveal d2" href="dienstleistungen.html#it">
-        <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_472.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn"></div>
-        <div class="body"><h3>Computervernetzung & Gebäudeinformatik</h3><p>Strukturierte Netzwerke und smarte Gebäudetechnik – zukunftssicher geplant.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_472.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Strukturierte Netzwerke und smarte Gebäudetechnik – zukunftssicher geplant.</p>
+        <p class="card-title">Computervernetzung & Gebäudeinformatik</p>
       </a>
       <a class="card reveal" href="dienstleistungen.html#elektroinstallationen">
-        <div class="img"><img src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_302.jpg" alt="Um- und Neubau sowie Hallenneubau Elektro Solothurn"></div>
-        <div class="body"><h3>Um- & Neubau / Hallenneubau</h3><p>Komplette Elektroprojekte für Wohn-, Gewerbe- und Industriebauten.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_302.jpg" alt="Um- und Neubau sowie Hallenneubau Elektro Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Komplette Elektroprojekte für Wohn-, Gewerbe- und Industriebauten.</p>
+        <p class="card-title">Um- & Neubau / Hallenneubau</p>
       </a>
       <a class="card reveal d1" href="dienstleistungen.html#service">
-        <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_ef79f2d4f7124cb588dbff22b055e6fe~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_252.jpg" alt="Gewerbeunterhalt von Liegenschaften Solothurn"></div>
-        <div class="body"><h3>Gewerbeunterhalt</h3><p>Regelmässiger Unterhalt von Liegenschaften – damit alles störungsfrei läuft.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/4b0beb_ef79f2d4f7124cb588dbff22b055e6fe~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_252.jpg" alt="Gewerbeunterhalt von Liegenschaften Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Regelmässiger Unterhalt von Liegenschaften – damit alles störungsfrei läuft.</p>
+        <p class="card-title">Gewerbeunterhalt</p>
       </a>
       <a class="card reveal d2" href="dienstleistungen.html#planung">
-        <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_2efa05cf611a40fa8bac06f5f17c428f~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_179.jpg" alt="Beleuchtungskonzepte und Lichtplanung Solothurn"></div>
-        <div class="body"><h3>Beleuchtung & Planung</h3><p>Stimmige Lichtkonzepte und kompetente Beratung für jedes Raumgefühl.</p><span class="more">Mehr erfahren →</span></div>
+        <div class="card-media">
+          <img src="https://static.wixstatic.com/media/4b0beb_2efa05cf611a40fa8bac06f5f17c428f~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_179.jpg" alt="Beleuchtungskonzepte und Lichtplanung Solothurn">
+          <span class="expand-btn"><span class="eb-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="eb-text">Mehr erfahren</span></span>
+        </div>
+        <p class="card-desc">Stimmige Lichtkonzepte und kompetente Beratung für jedes Raumgefühl.</p>
+        <p class="card-title">Beleuchtung & Planung</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about" id="ueber">
-  <div class="wrap about-grid">
-    <div class="about-media reveal">
-      <img src="https://static.wixstatic.com/media/ebc23b_48d5c220a24848a0b3f7d49d676cfc09~mv2.jpg/v1/fill/w_900,h_640,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Team_und_Portrait__083.jpg" alt="Das Team der Aare Elektro Solothurn AG">
+<!-- ===== ABOUT ===== -->
+<section class="block about" id="ueber" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="sec-intro reveal">
+      <div class="badge-row"><span class="br-num">2</span><span class="br-label">Über uns</span></div>
+      <h2 class="h-section">Leidenschaft und Freude am Beruf –<br> mit Berufsstolz und Engagement.</h2>
     </div>
-    <div class="reveal d1">
-      <span class="eyebrow">Über uns</span>
-      <h2>Leidenschaft und Freude am Beruf</h2>
-      <p>Mit Berufsstolz, Einsatzwillen, Spass und Motivation gehen wir unserem Beruf nach. Als Team stellen wir uns allen Anforderungen und Herausforderungen unserer Branche.</p>
-      <p>Innovation und Weiterentwicklung werden bei uns GROSS geschrieben. Davon profitieren letztlich Sie als unsere Kundschaft – und unsere Mitarbeitenden.</p>
-      <ul class="checks">
-        <li><span class="tick">✓</span> Kompetente Beratung mit viel Fachwissen</li>
-        <li><span class="tick">✓</span> Privat, Gewerbe, Läden & Industrie</li>
-        <li><span class="tick">✓</span> Verlässlicher Unterhalt von Liegenschaften</li>
-        <li><span class="tick">✓</span> Verwurzelt in der Region Solothurn</li>
-      </ul>
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <img src="https://static.wixstatic.com/media/ebc23b_48d5c220a24848a0b3f7d49d676cfc09~mv2.jpg/v1/fill/w_900,h_640,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Team_und_Portrait__083.jpg" alt="Das Team der Aare Elektro Solothurn AG">
+      </div>
+      <div class="reveal d1">
+        <p class="lead">Mit Berufsstolz, Einsatzwillen, Spass und Motivation gehen wir unserem Beruf nach. Als Team stellen wir uns allen Anforderungen und Herausforderungen unserer Branche. Innovation und Weiterentwicklung werden bei uns GROSS geschrieben – davon profitieren letztlich Sie als unsere Kundschaft.</p>
+        <ul class="checks">
+          <li><span class="tick">✓</span> Kompetente Beratung mit viel Fachwissen</li>
+          <li><span class="tick">✓</span> Privat, Gewerbe, Läden & Industrie</li>
+          <li><span class="tick">✓</span> Verlässlicher Unterhalt von Liegenschaften</li>
+          <li><span class="tick">✓</span> Verwurzelt in der Region Solothurn</li>
+        </ul>
+        <div style="margin-top:30px">
+          <a href="#kontakt" class="btn-roll btn-orange">
+            <span class="roll"><span>Über unser Studio</span><span>Über unser Studio</span></span>
+            <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
-<section id="team">
+<!-- ===== TEAM ===== -->
+<section class="block" id="team" style="background:var(--bg)">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Geschäftsleitung</span>
-      <h2>Wir stellen uns vor</h2>
-      <p>Ihre Ansprechpartner für Projektleitung und Beratung.</p>
+    <div class="sec-intro reveal">
+      <div class="badge-row"><span class="br-num">3</span><span class="br-label">Geschäftsleitung</span></div>
+      <h2 class="h-section">Wir stellen uns vor.</h2>
     </div>
     <div class="team-grid">
       <div class="person reveal">
@@ -389,54 +520,59 @@
         <h3>Daniel Hürlimann</h3>
         <div class="role">Geschäftsleitung · Projektleitung</div>
         <div class="qual">Eidg. dipl. Elektroinstallateur<br>Eidg. dipl. Betriebswirtschafter</div>
-        <a href="mailto:d.huerlimann@aare-elektro.ch">d.huerlimann@aare-elektro.ch</a>
+        <a class="mail" href="mailto:d.huerlimann@aare-elektro.ch">d.huerlimann@aare-elektro.ch</a>
       </div>
       <div class="person reveal d1">
         <img class="avatar-img" src="https://static.wixstatic.com/media/4b0beb_d86d758109ae4bcf8f60c3d243796bfd~mv2.jpg/v1/crop/x_36,y_58,w_1928,h_1998/fill/w_320,h_320,al_c,q_85,enc_avif,quality_auto/portrait.jpg" alt="Christoph Leu">
         <h3>Christoph Leu</h3>
         <div class="role">Geschäftsleitung · Projektleitung</div>
         <div class="qual">Eidg. dipl. Elektroinstallateur</div>
-        <a href="mailto:c.leu@aare-elektro.ch">c.leu@aare-elektro.ch</a>
+        <a class="mail" href="mailto:c.leu@aare-elektro.ch">c.leu@aare-elektro.ch</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
-<section style="padding-top:0">
+<!-- ===== CTA BAND ===== -->
+<section class="block" style="background:var(--bg);padding-top:0">
   <div class="wrap">
     <div class="cta-band reveal">
       <h2>Wir suchen Verstärkung – werde Teil des orangen Teams!</h2>
-      <a href="#" class="btn">Offene Stellen ansehen →</a>
+      <a href="#" class="btn-roll">
+        <span class="roll"><span>Offene Stellen ansehen</span><span>Offene Stellen ansehen</span></span>
+        <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="about" id="kontakt">
+<!-- ===== CONTACT ===== -->
+<section class="block" id="kontakt" style="background:var(--bg-soft)">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Kontakt</span>
-      <h2>Kontaktieren Sie uns</h2>
-      <p>Wir nehmen Ihre Fragen und Anregungen gerne per E-Mail, Telefon oder Kontaktformular entgegen.</p>
+    <div class="sec-intro reveal">
+      <div class="badge-row"><span class="br-num">4</span><span class="br-label">Kontakt</span></div>
+      <h2 class="h-section">Kontaktieren Sie uns.</h2>
     </div>
-    <img class="reveal" src="https://static.wixstatic.com/media/f837c3_ada201ed93a8451d884594598fa0af3d~mv2.png/v1/fill/w_1200,h_170,al_c,q_85,enc_avif,quality_auto/panorama.png" alt="Aare Elektro Solothurn Panorama" style="width:100%;border-radius:var(--radius);margin-bottom:48px;box-shadow:var(--shadow)">
+    <img class="contact-panorama reveal" src="https://static.wixstatic.com/media/f837c3_ada201ed93a8451d884594598fa0af3d~mv2.png/v1/fill/w_1200,h_170,al_c,q_85,enc_avif,quality_auto/panorama.png" alt="Aare Elektro Solothurn Panorama">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="item"><span class="ico">📍</span><div><strong>Aare-Elektro Solothurn AG</strong><span>Burgunderstrasse 13, 4562 Biberist</span></div></div>
-        <div class="item"><span class="ico">📞</span><div><strong>Telefon</strong><span><a href="tel:0326258000">032 625 80 00</a></span></div></div>
-        <div class="item"><span class="ico">✉️</span><div><strong>E-Mail</strong><span><a href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></span></div></div>
-        <div class="item"><span class="ico">🕐</span><div><strong>Erreichbarkeit</strong><span>Mo–Fr · 07:30–17:00 Uhr</span></div></div>
+        <div class="item"><span class="iwrap">📍</span><div><strong>Aare-Elektro Solothurn AG</strong><span>Burgunderstrasse 13, 4562 Biberist</span></div></div>
+        <div class="item"><span class="iwrap">📞</span><div><strong>Telefon</strong><span><a href="tel:0326258000">032 625 80 00</a></span></div></div>
+        <div class="item"><span class="iwrap">✉️</span><div><strong>E-Mail</strong><span><a href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></span></div></div>
+        <div class="item"><span class="iwrap">🕐</span><div><strong>Erreichbarkeit</strong><span>Mo–Fr · 07:30–17:00 Uhr</span></div></div>
       </div>
-      <form class="reveal d1" onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Vielen Dank!';">
-        <div class="row">
+      <form class="reveal d1" onsubmit="event.preventDefault();this.querySelector('.roll').innerHTML='<span>Vielen Dank!</span><span>Vielen Dank!</span>';">
+        <div class="frow">
           <div><label>Vorname</label><input type="text" placeholder="Vorname"></div>
           <div><label>Nachname</label><input type="text" placeholder="Nachname"></div>
         </div>
         <label>E-Mail</label><input type="email" placeholder="ihre@email.ch">
         <label>Telefon</label><input type="tel" placeholder="0XX XXX XX XX">
         <label>Ihre Nachricht</label><textarea rows="4" placeholder="Wie können wir helfen?"></textarea>
-        <button type="submit" class="btn">Absenden →</button>
+        <button type="submit" class="btn-roll btn-orange">
+          <span class="roll"><span>Absenden</span><span>Absenden</span></span>
+          <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </button>
       </form>
     </div>
   </div>
@@ -444,24 +580,20 @@
 
 </main>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="#" class="logo" aria-label="Aare Elektro Solothurn">
+        <a href="#start" class="nav-logo" aria-label="Aare Elektro Solothurn">
           <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
             <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#ffffff">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#ffffff">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
             <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#c9ccd2">SOLOTHURN</text>
           </svg>
         </a>
         <p>Ihr verlässlicher Elektropartner in der Region Solothurn – mit Leidenschaft und Freude am Beruf.</p>
-        <div class="socials">
-          <a href="#" title="Facebook">f</a>
-          <a href="#" title="Instagram">ig</a>
-          <a href="#" title="LinkedIn">in</a>
-        </div>
+        <div class="socials"><a href="#" title="Facebook">f</a><a href="#" title="Instagram">ig</a><a href="#" title="LinkedIn">in</a></div>
       </div>
       <div>
         <h4>Navigation</h4>
@@ -491,20 +623,32 @@
 </footer>
 
 <script>
-  // Einblende-Animation beim Scrollen
+  // Reveal beim Scrollen
   (function(){
     var els = document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){
-      els.forEach(function(el){ el.classList.add('in'); });
-      return;
-    }
+    if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});return;}
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
     els.forEach(function(el){ io.observe(el); });
   })();
+
+  // Live-Uhr (Zeit in Solothurn / Europe/Zurich)
+  function tick(){
+    var t = new Date().toLocaleTimeString('de-CH', {hour:'2-digit', minute:'2-digit', timeZone:'Europe/Zurich'});
+    var a = document.getElementById('clock'); if(a) a.textContent = t;
+    var b = document.getElementById('clock2'); if(b) b.textContent = t;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Mobile-Menü
+  var mm = document.getElementById('mobileMenu');
+  var open = document.getElementById('menuOpen');
+  var close = document.getElementById('menuClose');
+  if(open) open.addEventListener('click', function(){ mm.classList.add('open'); document.body.style.overflow='hidden'; });
+  function closeMenu(){ mm.classList.remove('open'); document.body.style.overflow=''; }
+  if(close) close.addEventListener('click', closeMenu);
+  document.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', closeMenu); });
 </script>
 
 </body>

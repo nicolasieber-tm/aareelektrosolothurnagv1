@@ -33,143 +33,204 @@
 }
 </script>
 
+<!-- ===== Font ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --orange:#F36F21;--orange-dark:#D85B12;--ink:#15181D;--ink-soft:#3a3f47;
-    --grey:#6b7280;--line:#e7e9ee;--bg:#ffffff;--bg-soft:#f6f7f9;
-    --radius:18px;--shadow:0 10px 40px rgba(20,24,29,.08);--shadow-lg:0 24px 70px rgba(20,24,29,.14);--maxw:1200px;
+    --orange:#F36F21;--orange-dark:#D85B12;--ink:#15181D;--grey:#6b7280;--line:#e7e9ee;
+    --bg:#ffffff;--bg-soft:#f5f5f5;--maxw:1440px;--ease:cubic-bezier(0.25,0.1,0.25,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  @media(min-width:640px){.wrap{padding:0 32px}}
+  @media(min-width:1024px){.wrap{padding:0 48px}}
 
-  /* Scroll-Animationen (Einblenden) */
-  .reveal{opacity:0;transform:translateY(44px) scale(.98);filter:blur(8px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease}
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(40px) scale(.98);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s ease}
   .reveal.in{opacity:1;transform:none;filter:blur(0)}
-  .reveal.d1{transition-delay:.12s}
-  .reveal.d2{transition-delay:.24s}
-  .reveal.d3{transition-delay:.36s}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  h1,h2,h3{line-height:1.14;letter-spacing:-.02em;font-weight:800}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block}
 
-  /* Header */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-  .logo{display:flex;align-items:center}
-  .logo-svg{height:44px;width:auto;display:block}
-  nav.menu{display:flex;gap:34px;align-items:center}
-  nav.menu a{font-size:.93rem;font-weight:600;color:var(--ink-soft);transition:color .2s}
-  nav.menu a:hover,nav.menu a.active{color:var(--orange)}
-  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:#fff;font-weight:700;font-size:.92rem;padding:13px 22px;border-radius:999px;transition:transform .18s,box-shadow .18s,background .18s;box-shadow:0 8px 22px rgba(243,111,33,.3)}
-  .btn:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(243,111,33,.4)}
-  .btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
-  .btn.ghost:hover{border-color:var(--orange);color:var(--orange)}
-  .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
-  .menu-toggle span{width:24px;height:2.5px;background:var(--ink);border-radius:2px}
+  /* Text-Roll Button */
+  .btn-roll{display:inline-flex;align-items:center;gap:14px;border-radius:9999px;font-size:13px;font-weight:500;padding:8px 8px 8px 22px;cursor:pointer;transition:background .3s;line-height:20px;white-space:nowrap}
+  @media(min-width:640px){.btn-roll{font-size:14px;padding-left:24px}}
+  .btn-roll .roll{display:flex;flex-direction:column;height:20px;overflow:hidden;transition:transform .5s var(--ease)}
+  .btn-roll .roll span{display:block;height:20px;line-height:20px}
+  .btn-roll:hover .roll{transform:translateY(-20px)}
+  .arrow-circle{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff;flex:0 0 auto;transition:transform .5s var(--ease)}
+  @media(min-width:640px){.arrow-circle{width:32px;height:32px}}
+  .btn-roll:hover .arrow-circle{transform:rotate(-45deg)}
+  .ar{width:15px;height:15px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn-orange:hover{background:var(--orange-dark)}
+  .btn-orange .ar{stroke:var(--orange)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#000}
+  .btn-dark .ar{stroke:var(--ink)}
+
+  /* Badge-Zeile */
+  .badge-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+  .br-num{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center}
+  @media(min-width:640px){.br-num{width:28px;height:28px;font-size:12px}}
+  .br-label{font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:9999px;padding:5px 14px}
+  @media(min-width:640px){.br-label{font-size:13px;padding:6px 16px}}
+  .h-display{font-size:clamp(1.75rem,7vw,4.2rem);font-weight:500;line-height:1.08;letter-spacing:-.03em;color:var(--ink)}
+  @media(min-width:640px){.h-display{font-size:clamp(2.5rem,5vw,4.2rem)}}
+  .h-section{font-size:clamp(1.5rem,4vw,3.2rem);font-weight:500;line-height:1.12;letter-spacing:-.02em;color:var(--ink)}
+
+  /* Navigation (Pill) */
+  .nav-fixed{position:fixed;top:0;left:0;right:0;z-index:40}
+  .nav-fixed .wrap{padding-top:8px;padding-bottom:8px}
+  @media(min-width:640px){.nav-fixed .wrap{padding-top:12px;padding-bottom:12px}}
+  .navpill{background:#fff;border-radius:9999px;display:flex;align-items:center;justify-content:space-between;padding:5px;box-shadow:0 4px 24px rgba(20,24,29,.08)}
+  .nav-left{display:flex;align-items:center;gap:20px;padding-left:6px}
+  .nav-logo .logo-svg{height:26px;width:auto;display:block}
+  .nav-links{display:none;align-items:center;gap:24px}
+  .nav-links a{font-size:14px;color:var(--ink);transition:color .3s}
+  .nav-links a:hover,.nav-links a.active{color:var(--orange)}
+  .nav-right{display:none;align-items:center;gap:16px;padding-right:4px}
+  .nav-status{font-size:13px;color:var(--grey)}
+  .nav-clock{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--grey)}
+  .nav-clock svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .menu-toggle{display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:9999px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+  .menu-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+  @media(min-width:768px){.nav-links{display:flex}.nav-right{display:flex}.menu-toggle{display:none}}
+  @media(max-width:1023px){.nav-status{display:none}}
+
+  .mobile-menu{position:fixed;inset:0;z-index:50;display:none}
+  .mobile-menu.open{display:block}
+  .mm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .4s ease}
+  .mobile-menu.open .mm-backdrop{opacity:1}
+  .mm-sheet{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:22px;padding:26px 24px 24px;transform:translateY(110%);transition:transform .5s cubic-bezier(0.32,0.72,0,1)}
+  .mobile-menu.open .mm-sheet{transform:translateY(0)}
+  .mm-time{font-size:13px;color:var(--grey);border:1px solid var(--line);border-radius:9999px;padding:6px 14px;display:inline-flex;gap:6px;align-items:center;margin-bottom:22px}
+  .mm-time svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .mm-links{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+  .mm-links a{font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
 
   /* Page hero */
-  .page-hero{position:relative;overflow:hidden;padding:72px 0 60px;background:var(--bg-soft)}
-  .page-hero::before{content:"";position:absolute;top:-160px;right:-160px;width:520px;height:520px;background:radial-gradient(circle,rgba(243,111,33,.14),transparent 65%);border-radius:50%}
-  .crumb{font-size:.85rem;color:var(--grey);margin-bottom:18px;position:relative}
+  .page-hero{padding:130px 0 60px;background:var(--bg-soft)}
+  @media(min-width:1024px){.page-hero{padding:170px 0 70px}}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:20px}
   .crumb a:hover{color:var(--orange)}
-  .page-hero h1{font-size:clamp(2.1rem,4.4vw,3.2rem);max-width:880px;margin:14px 0 18px;position:relative}
-  .page-hero p{font-size:1.12rem;color:var(--ink-soft);max-width:680px;position:relative}
-  .hero-img{margin-top:40px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
-  .hero-img img{width:100%;height:380px;object-fit:cover;display:block}
-
-  /* Quick nav chips */
-  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:40px 0 0}
-  .chip{padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:.88rem;color:var(--ink-soft);transition:all .2s}
-  .chip:hover{border-color:var(--orange);color:var(--orange);background:#fff}
+  .page-hero h1{max-width:18ch;margin-bottom:18px}
+  .page-hero h1 .hl{color:var(--orange)}
+  .page-hero .lead{font-size:16px;color:var(--grey);max-width:720px;line-height:1.6}
+  .hero-img{margin-top:40px;border-radius:20px;overflow:hidden;aspect-ratio:1200/420}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;padding:34px 0 0}
+  .chip{padding:8px 16px;border:1px solid var(--line);border-radius:9999px;font-weight:500;font-size:13px;color:var(--ink);transition:all .2s;background:#fff}
+  .chip:hover{border-color:var(--orange);color:var(--orange)}
 
   /* Service block */
-  .svc{padding:74px 0;border-bottom:1px solid var(--line)}
+  .svc{padding:64px 0;border-bottom:1px solid var(--line)}
+  @media(min-width:1024px){.svc{padding:90px 0}}
   .svc:last-of-type{border-bottom:0}
-  .svc .row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .svc.rev .row{direction:rtl}
-  .svc.rev .row > *{direction:ltr}
-  .svc .media img{width:100%;height:420px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
-  .svc .num-tag{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:var(--orange);color:#fff;font-weight:800;font-size:1.05rem;margin-bottom:16px}
-  .svc h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:16px}
-  .svc p{color:var(--ink-soft);margin-bottom:22px}
-  .feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 22px}
-  .feats li{display:flex;gap:10px;align-items:flex-start;font-size:.94rem;font-weight:500;color:var(--ink)}
-  .feats .tick{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:rgba(243,111,33,.14);color:var(--orange);display:grid;place-items:center;font-size:.7rem;font-weight:800;margin-top:3px}
+  .svc .row{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
+  @media(min-width:920px){.svc .row{grid-template-columns:1fr 1fr;gap:56px}.svc.rev .row{direction:rtl}.svc.rev .row > *{direction:ltr}}
+  .svc .media{border-radius:20px;overflow:hidden;aspect-ratio:700/560}
+  .svc .media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .svc .media:hover img{transform:scale(1.04)}
+  .svc .num-tag{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:14px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;margin-bottom:18px}
+  .svc h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:500;letter-spacing:-.02em;margin-bottom:16px;line-height:1.1}
+  .svc p{color:var(--grey);margin-bottom:24px;font-size:15px}
+  .feats{list-style:none;display:grid;grid-template-columns:1fr;gap:12px 22px}
+  @media(min-width:560px){.feats{grid-template-columns:1fr 1fr}}
+  .feats li{display:flex;gap:11px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--ink)}
+  .feats .tick{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:rgba(243,111,33,.14);color:var(--orange);display:grid;place-items:center;font-size:.7rem;font-weight:700;margin-top:3px}
 
   /* CTA */
-  .cta-band{margin:80px 0;background:linear-gradient(120deg,var(--orange),var(--orange-dark));color:#fff;border-radius:26px;padding:54px 56px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;box-shadow:var(--shadow-lg)}
-  .cta-band h2{font-size:clamp(1.6rem,2.8vw,2.2rem);max-width:560px}
-  .cta-band .btn{background:#fff;color:var(--orange);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-  .cta-band .btn:hover{background:var(--ink);color:#fff}
+  .cta-band{margin:80px 0;border-radius:26px;padding:54px 48px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;background:linear-gradient(120deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 24px 70px rgba(243,111,33,.28)}
+  .cta-band h2{font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:500;letter-spacing:-.02em;max-width:600px;line-height:1.12}
+  .cta-band .btn-roll{background:#fff;color:var(--ink)}
+  .cta-band .btn-roll .arrow-circle{background:var(--orange)}
+  .cta-band .btn-roll .ar{stroke:#fff}
 
   /* Footer */
   footer{background:var(--ink);color:#c9ccd2;padding:64px 0 30px}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-  .logo-svg.foot{height:46px}
-  footer p{font-size:.92rem;margin-top:14px;max-width:300px}
-  footer h4{color:#fff;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media(min-width:768px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px}}
+  footer .logo-svg{height:30px}
+  footer p{font-size:14px;margin-top:16px;max-width:300px;color:#9aa0a8}
+  footer h4{color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:600}
   footer ul{list-style:none;display:grid;gap:10px}
-  footer ul a,footer ul li{font-size:.92rem;color:#c9ccd2;transition:color .2s}
+  footer ul a,footer ul li{font-size:14px;color:#9aa0a8;transition:color .2s}
   footer ul a:hover{color:var(--orange)}
-  .socials{display:flex;gap:10px;margin-top:18px}
-  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:background .2s}
+  .socials{display:flex;gap:10px;margin-top:20px}
+  .socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:background .2s;font-size:13px}
   .socials a:hover{background:var(--orange)}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:.85rem;color:#8b8f97;flex-wrap:wrap;gap:12px}
-  .foot-bottom a{color:#8b8f97}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:13px;color:#7f858d;flex-wrap:wrap;gap:12px}
   .foot-bottom a:hover{color:var(--orange)}
-
-  @media(max-width:920px){
-    .svc .row{grid-template-columns:1fr;gap:34px}
-    .svc.rev .row{direction:ltr}
-    .svc .media img{height:300px}
-    .foot-grid{grid-template-columns:1fr 1fr}
-  }
-  @media(max-width:680px){
-    nav.menu{display:none}
-    .menu-toggle{display:flex}
-    .feats{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr}
-    .cta-band{padding:40px 28px}
-    .hero-img img{height:260px}
-  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="wrap nav">
-    <a href="index.html" class="logo" aria-label="Aare Elektro Solothurn">
-      <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
-        <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-        <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#58595B">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
-        <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#58595B">SOLOTHURN</text>
-      </svg>
-    </a>
-    <nav class="menu">
-      <a href="index.html#start">Start</a>
-      <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
-      <a href="index.html#ueber">Über uns</a>
-      <a href="index.html#team">Team</a>
-      <a href="index.html#kontakt">Kontakt</a>
+<!-- ===== NAVIGATION ===== -->
+<div class="nav-fixed">
+  <div class="wrap">
+    <nav class="navpill">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo" aria-label="Aare Elektro Solothurn">
+          <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
+            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
+            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+            <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
+          </svg>
+        </a>
+        <div class="nav-links">
+          <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
+          <a href="index.html#ueber">Über uns</a>
+          <a href="index.html#team">Team</a>
+          <a href="index.html#kontakt">Kontakt</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <span class="nav-status">Verfügbar für Projekte 2026</span>
+        <span class="nav-clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock">--:--</span> in Solothurn</span>
+        <a href="index.html#kontakt" class="btn-roll btn-dark">
+          <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
+          <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menuOpen" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg> Menü
+      </button>
     </nav>
-    <a href="index.html#kontakt" class="btn">Offerte anfragen →</a>
-    <button class="menu-toggle"><span></span><span></span><span></span></button>
   </div>
-</header>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-backdrop" id="menuClose"></div>
+  <div class="mm-sheet">
+    <span class="mm-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock2">--:--</span> in Solothurn</span>
+    <div class="mm-links">
+      <a href="dienstleistungen.html" data-close>Dienstleistungen</a>
+      <a href="index.html#ueber" data-close>Über uns</a>
+      <a href="index.html#team" data-close>Team</a>
+      <a href="index.html#kontakt" data-close>Kontakt</a>
+    </div>
+    <a href="index.html#kontakt" data-close class="btn-roll btn-orange" style="width:100%;justify-content:center">
+      <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
+      <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</div>
 
 <main>
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="wrap">
     <div class="crumb reveal"><a href="index.html">Start</a> › <span>Dienstleistungen</span></div>
-    <span class="eyebrow reveal d1">Unser Angebot</span>
-    <h1 class="reveal d1">Absolute Zuverlässigkeit ist unser oberstes Gebot</h1>
-    <p class="reveal d2">Unser Dienstleistungsangebot ist sehr weit gefächert. Neben allgemeinen Elektroinstallationen sind wir Ihr kompetenter Ansprechpartner für Gebäudeinformatik, Beleuchtungskonzepte, Telekommunikation, Computervernetzung, Ladestationen für Elektroautos und Photovoltaik-Anlagen.</p>
+    <div class="badge-row reveal"><span class="br-num">01</span><span class="br-label">Unser Angebot</span></div>
+    <h1 class="h-display reveal d1">Absolute <span class="hl">Zuverlässigkeit</span> ist unser oberstes Gebot.</h1>
+    <p class="lead reveal d2">Unser Dienstleistungsangebot ist sehr weit gefächert. Neben allgemeinen Elektroinstallationen sind wir Ihr kompetenter Ansprechpartner für Gebäudeinformatik, Beleuchtungskonzepte, Telekommunikation, Computervernetzung, Ladestationen für Elektroautos und Photovoltaik-Anlagen.</p>
     <div class="hero-img reveal d3">
       <img src="https://static.wixstatic.com/media/ebc23b_2374c10a98684cf5bace6e3977145906~mv2.jpg/v1/crop/x_0,y_176,w_8256,h_5153/fill/w_1200,h_500,al_c,q_85,enc_avif,quality_auto/dienstleistungen.jpg" alt="Aare Elektro Solothurn bei der Arbeit vor Ort">
     </div>
@@ -276,7 +337,10 @@
 <div class="wrap">
   <div class="cta-band reveal">
     <h2>Brauchen Sie einen verlässlichen Elektriker in der Region Solothurn?</h2>
-    <a href="index.html#kontakt" class="btn">Jetzt Offerte anfragen →</a>
+    <a href="index.html#kontakt" class="btn-roll">
+      <span class="roll"><span>Jetzt Offerte anfragen</span><span>Jetzt Offerte anfragen</span></span>
+      <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+    </a>
   </div>
 </div>
 </main>
@@ -286,10 +350,10 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="index.html" class="logo" aria-label="Aare Elektro Solothurn">
-          <svg class="logo-svg foot" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
+        <a href="index.html" class="nav-logo" aria-label="Aare Elektro Solothurn">
+          <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
             <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#ffffff">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
+            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#ffffff">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
             <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#c9ccd2">SOLOTHURN</text>
           </svg>
         </a>
@@ -323,20 +387,29 @@
 </footer>
 
 <script>
-  // Einblende-Animation beim Scrollen
   (function(){
     var els = document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){
-      els.forEach(function(el){ el.classList.add('in'); });
-      return;
-    }
+    if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});return;}
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
     els.forEach(function(el){ io.observe(el); });
   })();
+
+  function tick(){
+    var t = new Date().toLocaleTimeString('de-CH', {hour:'2-digit', minute:'2-digit', timeZone:'Europe/Zurich'});
+    var a = document.getElementById('clock'); if(a) a.textContent = t;
+    var b = document.getElementById('clock2'); if(b) b.textContent = t;
+  }
+  tick(); setInterval(tick, 1000);
+
+  var mm = document.getElementById('mobileMenu');
+  var open = document.getElementById('menuOpen');
+  var close = document.getElementById('menuClose');
+  if(open) open.addEventListener('click', function(){ mm.classList.add('open'); document.body.style.overflow='hidden'; });
+  function closeMenu(){ mm.classList.remove('open'); document.body.style.overflow=''; }
+  if(close) close.addEventListener('click', closeMenu);
+  document.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', closeMenu); });
 </script>
 
 </body>
