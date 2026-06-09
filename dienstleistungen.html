@@ -43,6 +43,14 @@
   html{scroll-behavior:smooth}
   body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
+
+  /* Scroll-Animationen (Einblenden) */
+  .reveal{opacity:0;transform:translateY(44px) scale(.98);filter:blur(8px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease}
+  .reveal.in{opacity:1;transform:none;filter:blur(0)}
+  .reveal.d1{transition-delay:.12s}
+  .reveal.d2{transition-delay:.24s}
+  .reveal.d3{transition-delay:.36s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   h1,h2,h3{line-height:1.14;letter-spacing:-.02em;font-weight:800}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
@@ -158,14 +166,14 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="wrap">
-    <div class="crumb"><a href="index.html">Start</a> › <span>Dienstleistungen</span></div>
-    <span class="eyebrow">Unser Angebot</span>
-    <h1>Absolute Zuverlässigkeit ist unser oberstes Gebot</h1>
-    <p>Unser Dienstleistungsangebot ist sehr weit gefächert. Neben allgemeinen Elektroinstallationen sind wir Ihr kompetenter Ansprechpartner für Gebäudeinformatik, Beleuchtungskonzepte, Telekommunikation, Computervernetzung, Ladestationen für Elektroautos und Photovoltaik-Anlagen.</p>
-    <div class="hero-img">
+    <div class="crumb reveal"><a href="index.html">Start</a> › <span>Dienstleistungen</span></div>
+    <span class="eyebrow reveal d1">Unser Angebot</span>
+    <h1 class="reveal d1">Absolute Zuverlässigkeit ist unser oberstes Gebot</h1>
+    <p class="reveal d2">Unser Dienstleistungsangebot ist sehr weit gefächert. Neben allgemeinen Elektroinstallationen sind wir Ihr kompetenter Ansprechpartner für Gebäudeinformatik, Beleuchtungskonzepte, Telekommunikation, Computervernetzung, Ladestationen für Elektroautos und Photovoltaik-Anlagen.</p>
+    <div class="hero-img reveal d3">
       <img src="https://static.wixstatic.com/media/ebc23b_2374c10a98684cf5bace6e3977145906~mv2.jpg/v1/crop/x_0,y_176,w_8256,h_5153/fill/w_1200,h_500,al_c,q_85,enc_avif,quality_auto/dienstleistungen.jpg" alt="Aare Elektro Solothurn bei der Arbeit vor Ort">
     </div>
-    <div class="chips">
+    <div class="chips reveal d3">
       <a class="chip" href="#elektroinstallationen">Elektroinstallationen</a>
       <a class="chip" href="#service">Service & Kundendienst</a>
       <a class="chip" href="#planung">Planung & Beratung</a>
@@ -177,10 +185,10 @@
 <!-- 1 ELEKTROINSTALLATIONEN -->
 <section class="svc" id="elektroinstallationen">
   <div class="wrap row">
-    <div class="media">
+    <div class="media reveal">
       <img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/elektroinstallationen.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn">
     </div>
-    <div>
+    <div class="reveal d1">
       <span class="num-tag">01</span>
       <h2>Elektroinstallationen</h2>
       <p>Wir bieten Ihnen Lösungen nach Ihren Wünschen, welche den neusten Normen und Vorgaben entsprechen. Durch unsere Kontrolle garantieren und überwachen wir die Einhaltung sämtlicher Sicherheitsvorschriften.</p>
@@ -201,10 +209,10 @@
 <!-- 2 SERVICE -->
 <section class="svc rev" id="service">
   <div class="wrap row">
-    <div class="media">
+    <div class="media reveal">
       <img src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/service.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn">
     </div>
-    <div>
+    <div class="reveal d1">
       <span class="num-tag">02</span>
       <h2>Service und Kundendienst</h2>
       <p>Unser Kundenservice behebt rasch und zuverlässig allfällige Störungen, Mängel, Reparaturen oder Installationen. Unsere Fahrzeuge sind alle mit den nötigen Materialien und Werkzeugen ausgerüstet, so dass wir Ihren Auftrag schnell und fachgerecht erledigen können.</p>
@@ -221,10 +229,10 @@
 <!-- 3 PLANUNG -->
 <section class="svc" id="planung">
   <div class="wrap row">
-    <div class="media">
+    <div class="media reveal">
       <img src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/planung.jpg" alt="Elektroplanung und Beratung Solothurn">
     </div>
-    <div>
+    <div class="reveal d1">
       <span class="num-tag">03</span>
       <h2>Planung und Beratung</h2>
       <p>Dank unseren umfassenden Kenntnissen der neusten Technologien planen wir alle Teilgebiete. Ihr Vorteil: Alle Arbeiten werden durch uns koordiniert, ausgeführt und überwacht – so haben Sie nur einen Ansprechpartner. Die Planung erfolgt mit Hilfe unserer modernen CAD-Anlage.</p>
@@ -243,10 +251,10 @@
 <!-- 4 IT -->
 <section class="svc rev" id="it">
   <div class="wrap row">
-    <div class="media">
+    <div class="media reveal">
       <img src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/it.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn">
     </div>
-    <div>
+    <div class="reveal d1">
       <span class="num-tag">04</span>
       <h2>Computervernetzung / Gebäudeinformatik</h2>
       <p>Die IT entwickelt sich rasant weiter. Mit stetigen Weiterbildungen bleiben wir auf dem aktuellen Stand und bieten umfassende Lösungen – vom einfachen Home-Office bis zu topmodernen Lösungen im Businessbereich.</p>
@@ -266,7 +274,7 @@
 
 <!-- CTA -->
 <div class="wrap">
-  <div class="cta-band">
+  <div class="cta-band reveal">
     <h2>Brauchen Sie einen verlässlichen Elektriker in der Region Solothurn?</h2>
     <a href="index.html#kontakt" class="btn">Jetzt Offerte anfragen →</a>
   </div>
@@ -313,6 +321,23 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Einblende-Animation beim Scrollen
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>

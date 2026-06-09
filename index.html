@@ -106,6 +106,17 @@
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;
   }
+
+  /* ---------- Scroll-Animationen (Einblenden) ---------- */
+  .reveal{opacity:0;transform:translateY(44px) scale(.98);filter:blur(8px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease}
+  .reveal.in{opacity:1;transform:none;filter:blur(0)}
+  .reveal.d1{transition-delay:.12s}
+  .reveal.d2{transition-delay:.24s}
+  .reveal.d3{transition-delay:.36s}
+  .reveal.d4{transition-delay:.48s}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;filter:none;transition:none}
+  }
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   h1,h2,h3{line-height:1.12;letter-spacing:-.02em;font-weight:800}
@@ -276,19 +287,19 @@
 <section class="hero" id="start">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Der Elektriker von Solothurn</span>
-      <h1>Ihr <span class="hl">Elektriker</span> in Solothurn – mit Leidenschaft & Freude am Beruf.</h1>
-      <p class="lead">Kompetente Beratung, professionelle Installationen und zuverlässiger Service – für Privatpersonen, Gewerbe, Läden und Industrie in der Region Solothurn.</p>
-      <div class="hero-cta">
+      <span class="eyebrow reveal">Der Elektriker von Solothurn</span>
+      <h1 class="reveal d1">Ihr <span class="hl">Elektriker</span> in Solothurn – mit Leidenschaft & Freude am Beruf.</h1>
+      <p class="lead reveal d2">Kompetente Beratung, professionelle Installationen und zuverlässiger Service – für Privatpersonen, Gewerbe, Läden und Industrie in der Region Solothurn.</p>
+      <div class="hero-cta reveal d3">
         <a href="#kontakt" class="btn">Jetzt kontaktieren</a>
         <a href="tel:0326258000" class="btn ghost">032 625 80 00</a>
       </div>
-      <div class="hero-stats">
+      <div class="hero-stats reveal d4">
         <div><div class="num">7+</div><div class="lbl">Fachbereiche</div></div>
         <div><div class="num">100%</div><div class="lbl">Region Solothurn</div></div>
       </div>
     </div>
-    <div class="hero-media">
+    <div class="hero-media reveal d2">
       <img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_700,h_900,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_208.jpg" alt="Aare Elektro Elektroinstallationen">
       <div class="hero-badge">
         <span class="ico">✓</span>
@@ -309,33 +320,33 @@
 <!-- SERVICES -->
 <section id="leistungen">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <span class="eyebrow">Unsere Dienstleistungen</span>
       <h2>Alles aus einer Hand</h2>
       <p>Von der Planung über die Installation bis zum Unterhalt – wir begleiten Ihr Projekt mit Fachwissen und Engagement.</p>
     </div>
     <div class="cards">
-      <a class="card" href="dienstleistungen.html#elektroinstallationen">
+      <a class="card reveal" href="dienstleistungen.html#elektroinstallationen">
         <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_208.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn"></div>
         <div class="body"><h3>Elektroinstallationen</h3><p>Fachgerechte Installationen für Neubau, Umbau und Sanierung – sauber, sicher und normgerecht.</p><span class="more">Mehr erfahren →</span></div>
       </a>
-      <a class="card" href="dienstleistungen.html#service">
+      <a class="card reveal d1" href="dienstleistungen.html#service">
         <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_042.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn"></div>
         <div class="body"><h3>Service & Kundendienst</h3><p>Schnelle Hilfe bei Störungen und Reparaturen – verlässlich für Privat und Gewerbe.</p><span class="more">Mehr erfahren →</span></div>
       </a>
-      <a class="card" href="dienstleistungen.html#it">
+      <a class="card reveal d2" href="dienstleistungen.html#it">
         <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_472.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn"></div>
         <div class="body"><h3>Computervernetzung & Gebäudeinformatik</h3><p>Strukturierte Netzwerke und smarte Gebäudetechnik – zukunftssicher geplant.</p><span class="more">Mehr erfahren →</span></div>
       </a>
-      <a class="card" href="dienstleistungen.html#elektroinstallationen">
+      <a class="card reveal" href="dienstleistungen.html#elektroinstallationen">
         <div class="img"><img src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_302.jpg" alt="Um- und Neubau sowie Hallenneubau Elektro Solothurn"></div>
         <div class="body"><h3>Um- & Neubau / Hallenneubau</h3><p>Komplette Elektroprojekte für Wohn-, Gewerbe- und Industriebauten.</p><span class="more">Mehr erfahren →</span></div>
       </a>
-      <a class="card" href="dienstleistungen.html#service">
+      <a class="card reveal d1" href="dienstleistungen.html#service">
         <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_ef79f2d4f7124cb588dbff22b055e6fe~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_252.jpg" alt="Gewerbeunterhalt von Liegenschaften Solothurn"></div>
         <div class="body"><h3>Gewerbeunterhalt</h3><p>Regelmässiger Unterhalt von Liegenschaften – damit alles störungsfrei läuft.</p><span class="more">Mehr erfahren →</span></div>
       </a>
-      <a class="card" href="dienstleistungen.html#planung">
+      <a class="card reveal d2" href="dienstleistungen.html#planung">
         <div class="img"><img src="https://static.wixstatic.com/media/4b0beb_2efa05cf611a40fa8bac06f5f17c428f~mv2.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Location_179.jpg" alt="Beleuchtungskonzepte und Lichtplanung Solothurn"></div>
         <div class="body"><h3>Beleuchtung & Planung</h3><p>Stimmige Lichtkonzepte und kompetente Beratung für jedes Raumgefühl.</p><span class="more">Mehr erfahren →</span></div>
       </a>
@@ -346,10 +357,10 @@
 <!-- ABOUT -->
 <section class="about" id="ueber">
   <div class="wrap about-grid">
-    <div class="about-media">
+    <div class="about-media reveal">
       <img src="https://static.wixstatic.com/media/ebc23b_48d5c220a24848a0b3f7d49d676cfc09~mv2.jpg/v1/fill/w_900,h_640,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Team_und_Portrait__083.jpg" alt="Das Team der Aare Elektro Solothurn AG">
     </div>
-    <div>
+    <div class="reveal d1">
       <span class="eyebrow">Über uns</span>
       <h2>Leidenschaft und Freude am Beruf</h2>
       <p>Mit Berufsstolz, Einsatzwillen, Spass und Motivation gehen wir unserem Beruf nach. Als Team stellen wir uns allen Anforderungen und Herausforderungen unserer Branche.</p>
@@ -367,20 +378,20 @@
 <!-- TEAM -->
 <section id="team">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <span class="eyebrow">Geschäftsleitung</span>
       <h2>Wir stellen uns vor</h2>
       <p>Ihre Ansprechpartner für Projektleitung und Beratung.</p>
     </div>
     <div class="team-grid">
-      <div class="person">
+      <div class="person reveal">
         <img class="avatar-img" src="https://static.wixstatic.com/media/4b0beb_0edc64137e5e4ae0bb46de9bfd783c27~mv2.jpg/v1/crop/x_0,y_160,w_1992,h_2038/fill/w_320,h_320,al_c,q_85,enc_avif,quality_auto/portrait.jpg" alt="Daniel Hürlimann">
         <h3>Daniel Hürlimann</h3>
         <div class="role">Geschäftsleitung · Projektleitung</div>
         <div class="qual">Eidg. dipl. Elektroinstallateur<br>Eidg. dipl. Betriebswirtschafter</div>
         <a href="mailto:d.huerlimann@aare-elektro.ch">d.huerlimann@aare-elektro.ch</a>
       </div>
-      <div class="person">
+      <div class="person reveal d1">
         <img class="avatar-img" src="https://static.wixstatic.com/media/4b0beb_d86d758109ae4bcf8f60c3d243796bfd~mv2.jpg/v1/crop/x_36,y_58,w_1928,h_1998/fill/w_320,h_320,al_c,q_85,enc_avif,quality_auto/portrait.jpg" alt="Christoph Leu">
         <h3>Christoph Leu</h3>
         <div class="role">Geschäftsleitung · Projektleitung</div>
@@ -394,7 +405,7 @@
 <!-- CTA BAND -->
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="cta-band">
+    <div class="cta-band reveal">
       <h2>Wir suchen Verstärkung – werde Teil des orangen Teams!</h2>
       <a href="#" class="btn">Offene Stellen ansehen →</a>
     </div>
@@ -404,20 +415,20 @@
 <!-- CONTACT -->
 <section class="about" id="kontakt">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <span class="eyebrow">Kontakt</span>
       <h2>Kontaktieren Sie uns</h2>
       <p>Wir nehmen Ihre Fragen und Anregungen gerne per E-Mail, Telefon oder Kontaktformular entgegen.</p>
     </div>
-    <img src="https://static.wixstatic.com/media/f837c3_ada201ed93a8451d884594598fa0af3d~mv2.png/v1/fill/w_1200,h_170,al_c,q_85,enc_avif,quality_auto/panorama.png" alt="Aare Elektro Solothurn Panorama" style="width:100%;border-radius:var(--radius);margin-bottom:48px;box-shadow:var(--shadow)">
+    <img class="reveal" src="https://static.wixstatic.com/media/f837c3_ada201ed93a8451d884594598fa0af3d~mv2.png/v1/fill/w_1200,h_170,al_c,q_85,enc_avif,quality_auto/panorama.png" alt="Aare Elektro Solothurn Panorama" style="width:100%;border-radius:var(--radius);margin-bottom:48px;box-shadow:var(--shadow)">
     <div class="contact-grid">
-      <div class="contact-info">
+      <div class="contact-info reveal">
         <div class="item"><span class="ico">📍</span><div><strong>Aare-Elektro Solothurn AG</strong><span>Burgunderstrasse 13, 4562 Biberist</span></div></div>
         <div class="item"><span class="ico">📞</span><div><strong>Telefon</strong><span><a href="tel:0326258000">032 625 80 00</a></span></div></div>
         <div class="item"><span class="ico">✉️</span><div><strong>E-Mail</strong><span><a href="mailto:info@aare-elektro.ch">info@aare-elektro.ch</a></span></div></div>
         <div class="item"><span class="ico">🕐</span><div><strong>Erreichbarkeit</strong><span>Mo–Fr · 07:30–17:00 Uhr</span></div></div>
       </div>
-      <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Vielen Dank!';">
+      <form class="reveal d1" onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Vielen Dank!';">
         <div class="row">
           <div><label>Vorname</label><input type="text" placeholder="Vorname"></div>
           <div><label>Nachname</label><input type="text" placeholder="Nachname"></div>
@@ -478,6 +489,23 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Einblende-Animation beim Scrollen
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
