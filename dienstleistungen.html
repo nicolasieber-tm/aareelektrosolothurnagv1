@@ -33,193 +33,157 @@
 }
 </script>
 
-<!-- ===== Font ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --orange:#F36F21;--orange-dark:#D85B12;--ink:#15181D;--grey:#6b7280;--line:#e7e9ee;
-    --bg:#ffffff;--bg-soft:#f5f5f5;--maxw:1440px;--ease:cubic-bezier(0.25,0.1,0.25,1);
+    --orange:#F26F1F;
+    --orange-d:#D2570F;
+    --ink:#0E0F12;
+    --ink2:#43474F;
+    --grey:#8A8F98;
+    --line:#E7E8EB;
+    --bg:#FFFFFF;
+    --bg2:#F5F5F4;
+    --maxw:1320px;
+    --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;font-weight:400;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  @media(min-width:640px){.wrap{padding:0 32px}}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   @media(min-width:1024px){.wrap{padding:0 48px}}
+  ::selection{background:var(--orange);color:#fff}
 
-  /* Reveal */
-  .reveal{opacity:0;transform:translateY(40px) scale(.98);filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s ease}
-  .reveal.in{opacity:1;transform:none;filter:blur(0)}
-  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
+  h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:.98}
 
-  /* Text-Roll Button */
-  .btn-roll{display:inline-flex;align-items:center;gap:14px;border-radius:9999px;font-size:13px;font-weight:500;padding:8px 8px 8px 22px;cursor:pointer;transition:background .3s;line-height:20px;white-space:nowrap}
-  @media(min-width:640px){.btn-roll{font-size:14px;padding-left:24px}}
-  .btn-roll .roll{display:flex;flex-direction:column;height:20px;overflow:hidden;transition:transform .5s var(--ease)}
-  .btn-roll .roll span{display:block;height:20px;line-height:20px}
-  .btn-roll:hover .roll{transform:translateY(-20px)}
-  .arrow-circle{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff;flex:0 0 auto;transition:transform .5s var(--ease)}
-  @media(min-width:640px){.arrow-circle{width:32px;height:32px}}
-  .btn-roll:hover .arrow-circle{transform:rotate(-45deg)}
-  .ar{width:15px;height:15px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:15px 26px;cursor:pointer;border:0;transition:transform .25s var(--ease),background .25s,color .25s;font-family:inherit}
   .btn-orange{background:var(--orange);color:#fff}
-  .btn-orange:hover{background:var(--orange-dark)}
-  .btn-orange .ar{stroke:var(--orange)}
-  .btn-dark{background:var(--ink);color:#fff}
-  .btn-dark:hover{background:#000}
-  .btn-dark .ar{stroke:var(--ink)}
+  .btn-orange:hover{background:var(--orange-d);transform:translateY(-2px)}
+  .btn-out{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-out:hover{background:var(--ink);color:#fff}
+  .ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
 
-  /* Badge-Zeile */
-  .badge-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-  .br-num{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center}
-  @media(min-width:640px){.br-num{width:28px;height:28px;font-size:12px}}
-  .br-label{font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:9999px;padding:5px 14px}
-  @media(min-width:640px){.br-label{font-size:13px;padding:6px 16px}}
-  .h-display{font-size:clamp(1.75rem,7vw,4.2rem);font-weight:500;line-height:1.08;letter-spacing:-.03em;color:var(--ink)}
-  @media(min-width:640px){.h-display{font-size:clamp(2.5rem,5vw,4.2rem)}}
-  .h-section{font-size:clamp(1.5rem,4vw,3.2rem);font-weight:500;line-height:1.12;letter-spacing:-.02em;color:var(--ink)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-  /* Navigation (Pill) */
-  .nav-fixed{position:fixed;top:0;left:0;right:0;z-index:40}
-  .nav-fixed .wrap{padding-top:8px;padding-bottom:8px}
-  @media(min-width:640px){.nav-fixed .wrap{padding-top:12px;padding-bottom:12px}}
-  .navpill{background:#fff;border-radius:9999px;display:flex;align-items:center;justify-content:space-between;padding:5px;box-shadow:0 4px 24px rgba(20,24,29,.08)}
-  .nav-left{display:flex;align-items:center;gap:20px;padding-left:6px}
-  .nav-logo .logo-svg{height:26px;width:auto;display:block}
-  .nav-links{display:none;align-items:center;gap:24px}
-  .nav-links a{font-size:14px;color:var(--ink);transition:color .3s}
+  /* ===== NAV ===== */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo-svg{height:30px;width:auto;display:block;overflow:visible}
+  .nav-links{display:none;align-items:center;gap:34px}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink2);transition:color .2s}
   .nav-links a:hover,.nav-links a.active{color:var(--orange)}
-  .nav-right{display:none;align-items:center;gap:16px;padding-right:4px}
-  .nav-status{font-size:13px;color:var(--grey)}
-  .nav-clock{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--grey)}
-  .nav-clock svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
-  .menu-toggle{display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:9999px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
-  .menu-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
-  @media(min-width:768px){.nav-links{display:flex}.nav-right{display:flex}.menu-toggle{display:none}}
-  @media(max-width:1023px){.nav-status{display:none}}
+  .menu-toggle{display:grid;place-items:center;width:46px;height:46px;cursor:pointer;background:none;border:0}
+  .menu-toggle svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:2}
+  @media(min-width:1024px){.nav-links{display:flex}.menu-toggle{display:none}}
 
-  .mobile-menu{position:fixed;inset:0;z-index:50;display:none}
-  .mobile-menu.open{display:block}
-  .mm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .4s ease}
-  .mobile-menu.open .mm-backdrop{opacity:1}
-  .mm-sheet{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:22px;padding:26px 24px 24px;transform:translateY(110%);transition:transform .5s cubic-bezier(0.32,0.72,0,1)}
-  .mobile-menu.open .mm-sheet{transform:translateY(0)}
-  .mm-time{font-size:13px;color:var(--grey);border:1px solid var(--line);border-radius:9999px;padding:6px 14px;display:inline-flex;gap:6px;align-items:center;margin-bottom:22px}
-  .mm-time svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
-  .mm-links{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
-  .mm-links a{font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+  .mmenu{position:fixed;inset:0;z-index:60;display:none}
+  .mmenu.open{display:block}
+  .mmenu-bd{position:absolute;inset:0;background:rgba(14,15,18,.5)}
+  .mmenu-sheet{position:absolute;top:0;right:0;bottom:0;width:min(82%,360px);background:#fff;padding:90px 30px 30px;display:flex;flex-direction:column;gap:6px}
+  .mmenu-sheet a{padding:16px 4px;font-size:22px;font-weight:700;letter-spacing:-.02em;border-bottom:1px solid var(--line)}
+  .mmenu-sheet a:hover{color:var(--orange)}
 
-  /* Page hero */
-  .page-hero{padding:130px 0 60px;background:var(--bg-soft)}
-  @media(min-width:1024px){.page-hero{padding:170px 0 70px}}
-  .crumb{font-size:13px;color:var(--grey);margin-bottom:20px}
+  /* ===== PAGE HERO ===== */
+  .page-hero{padding:120px 0 64px;background:var(--bg2);border-bottom:1px solid var(--line)}
+  @media(min-width:1024px){.page-hero{padding:150px 0 72px}}
+  .crumb{font-size:13px;font-weight:500;color:var(--grey);margin-bottom:26px;letter-spacing:.02em}
   .crumb a:hover{color:var(--orange)}
-  .page-hero h1{max-width:18ch;margin-bottom:18px}
-  .page-hero h1 .hl{color:var(--orange)}
-  .page-hero .lead{font-size:16px;color:var(--grey);max-width:720px;line-height:1.6}
-  .hero-img{margin-top:40px;border-radius:20px;overflow:hidden;aspect-ratio:1200/420}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:24px}
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--orange)}
+  .page-hero h1{font-size:clamp(2.6rem,6.5vw,5rem);max-width:16ch;margin-bottom:24px}
+  .page-hero h1 em{font-style:normal;color:var(--orange)}
+  .page-hero .lead{font-size:clamp(1.02rem,1.5vw,1.18rem);color:var(--ink2);max-width:66ch;line-height:1.6;font-weight:400}
+  .hero-img{margin-top:44px;overflow:hidden;aspect-ratio:1200/440}
   .hero-img img{width:100%;height:100%;object-fit:cover}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;padding:34px 0 0}
-  .chip{padding:8px 16px;border:1px solid var(--line);border-radius:9999px;font-weight:500;font-size:13px;color:var(--ink);transition:all .2s;background:#fff}
-  .chip:hover{border-color:var(--orange);color:var(--orange)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .chip{padding:10px 18px;background:#fff;border:1.5px solid var(--line);font-weight:600;font-size:13px;color:var(--ink);transition:all .2s}
+  .chip:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px)}
 
-  /* Service block */
-  .svc{padding:64px 0;border-bottom:1px solid var(--line)}
-  @media(min-width:1024px){.svc{padding:90px 0}}
+  /* ===== SERVICE BLOCKS ===== */
+  .svc{padding:80px 0;border-bottom:1px solid var(--line)}
+  @media(min-width:1024px){.svc{padding:104px 0}}
   .svc:last-of-type{border-bottom:0}
-  .svc .row{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
-  @media(min-width:920px){.svc .row{grid-template-columns:1fr 1fr;gap:56px}.svc.rev .row{direction:rtl}.svc.rev .row > *{direction:ltr}}
-  .svc .media{border-radius:20px;overflow:hidden;aspect-ratio:700/560}
+  .svc .row{display:grid;grid-template-columns:1fr;gap:38px;align-items:center}
+  @media(min-width:920px){.svc .row{grid-template-columns:1fr 1fr;gap:64px}.svc.rev .media{order:2}}
+  .svc .media{overflow:hidden;aspect-ratio:700/560}
   .svc .media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-  .svc .media:hover img{transform:scale(1.04)}
-  .svc .num-tag{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:14px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;margin-bottom:18px}
-  .svc h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:500;letter-spacing:-.02em;margin-bottom:16px;line-height:1.1}
-  .svc p{color:var(--grey);margin-bottom:24px;font-size:15px}
-  .feats{list-style:none;display:grid;grid-template-columns:1fr;gap:12px 22px}
-  @media(min-width:560px){.feats{grid-template-columns:1fr 1fr}}
-  .feats li{display:flex;gap:11px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--ink)}
-  .feats .tick{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:rgba(243,111,33,.14);color:var(--orange);display:grid;place-items:center;font-size:.7rem;font-weight:700;margin-top:3px}
+  .svc .media:hover img{transform:scale(1.05)}
+  .svc .num{font-size:14px;font-weight:700;color:var(--orange);letter-spacing:.1em;margin-bottom:16px}
+  .svc h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px}
+  .svc p{color:var(--ink2);font-size:16px;line-height:1.65;margin-bottom:28px;max-width:52ch}
+  .feats{list-style:none;display:grid;grid-template-columns:1fr;gap:0}
+  @media(min-width:560px){.feats{grid-template-columns:1fr 1fr;gap:0 30px}}
+  .feats li{display:flex;gap:13px;align-items:flex-start;font-size:14.5px;font-weight:500;color:var(--ink);padding:13px 0;border-top:1px solid var(--line)}
+  .feats .tick{flex:0 0 20px;width:20px;height:20px;color:var(--orange);margin-top:2px}
 
-  /* CTA */
-  .cta-band{margin:80px 0;border-radius:26px;padding:54px 48px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;background:linear-gradient(120deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 24px 70px rgba(243,111,33,.28)}
-  .cta-band h2{font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:500;letter-spacing:-.02em;max-width:600px;line-height:1.12}
-  .cta-band .btn-roll{background:#fff;color:var(--ink)}
-  .cta-band .btn-roll .arrow-circle{background:var(--orange)}
-  .cta-band .btn-roll .ar{stroke:#fff}
+  /* ===== CTA ===== */
+  .cta{background:var(--orange);color:#fff;margin-top:0}
+  .cta-in{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:90px 0}
+  .cta h2{font-size:clamp(1.9rem,4vw,3rem);max-width:20ch}
+  .cta .btn{background:#fff;color:var(--ink)}
+  .cta .btn:hover{background:var(--ink);color:#fff}
 
-  /* Footer */
-  footer{background:var(--ink);color:#c9ccd2;padding:64px 0 30px}
-  .foot-grid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-  @media(min-width:768px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px}}
-  footer .logo-svg{height:30px}
-  footer p{font-size:14px;margin-top:16px;max-width:300px;color:#9aa0a8}
-  footer h4{color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:600}
-  footer ul{list-style:none;display:grid;gap:10px}
-  footer ul a,footer ul li{font-size:14px;color:#9aa0a8;transition:color .2s}
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink);color:#fff;padding:80px 0 36px}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+  @media(min-width:768px){.foot-grid{grid-template-columns:1.6fr 1fr 1fr}}
+  footer .logo-svg{height:34px}
+  footer p{font-size:15px;color:rgba(255,255,255,.6);max-width:32ch;margin-top:18px;line-height:1.6}
+  footer h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:18px;font-weight:700}
+  footer ul{list-style:none;display:grid;gap:12px}
+  footer ul a,footer ul li{font-size:15px;color:rgba(255,255,255,.75);transition:color .2s}
   footer ul a:hover{color:var(--orange)}
-  .socials{display:flex;gap:10px;margin-top:20px}
-  .socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;transition:background .2s;font-size:13px}
-  .socials a:hover{background:var(--orange)}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:13px;color:#7f858d;flex-wrap:wrap;gap:12px}
-  .foot-bottom a:hover{color:var(--orange)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:26px;font-size:13px;color:rgba(255,255,255,.5)}
+  .foot-bottom a:hover{color:#fff}
+  .socials{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
+  .socials a{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+  .socials a:hover{color:var(--orange);border-color:var(--orange)}
 </style>
 </head>
 <body>
 
-<!-- ===== NAVIGATION ===== -->
-<div class="nav-fixed">
-  <div class="wrap">
-    <nav class="navpill">
-      <div class="nav-left">
-        <a href="index.html" class="nav-logo" aria-label="Aare Elektro Solothurn">
-          <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
-            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#15181D">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
-            <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#15181D">SOLOTHURN</text>
-          </svg>
-        </a>
-        <div class="nav-links">
-          <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
-          <a href="index.html#ueber">Über uns</a>
-          <a href="index.html#team">Team</a>
-          <a href="index.html#kontakt">Kontakt</a>
-        </div>
-      </div>
-      <div class="nav-right">
-        <span class="nav-status">Verfügbar für Projekte 2026</span>
-        <span class="nav-clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock">--:--</span> in Solothurn</span>
-        <a href="index.html#kontakt" class="btn-roll btn-dark">
-          <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
-          <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-      </div>
-      <button class="menu-toggle" id="menuOpen" aria-label="Menü öffnen">
-        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg> Menü
-      </button>
-    </nav>
-  </div>
-</div>
-
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mm-backdrop" id="menuClose"></div>
-  <div class="mm-sheet">
-    <span class="mm-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="clock2">--:--</span> in Solothurn</span>
-    <div class="mm-links">
-      <a href="dienstleistungen.html" data-close>Dienstleistungen</a>
-      <a href="index.html#ueber" data-close>Über uns</a>
-      <a href="index.html#team" data-close>Team</a>
-      <a href="index.html#kontakt" data-close>Kontakt</a>
-    </div>
-    <a href="index.html#kontakt" data-close class="btn-roll btn-orange" style="width:100%;justify-content:center">
-      <span class="roll"><span>Offerte anfragen</span><span>Offerte anfragen</span></span>
-      <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+<!-- NAV -->
+<header>
+  <div class="wrap nav">
+    <a href="index.html" aria-label="Aare Elektro Solothurn">
+      <svg class="logo-svg" viewBox="0 0 340 66" xmlns="http://www.w3.org/2000/svg" role="img">
+        <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F26F1F"/>
+        <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#0E0F12">AARE </tspan><tspan fill="#F26F1F">ELEKTRO</tspan></text>
+        <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#0E0F12">SOLOTHURN</text>
+      </svg>
     </a>
+    <nav class="nav-links">
+      <a href="index.html">Startseite</a>
+      <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
+      <a href="index.html#ueber">Über uns</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a href="index.html#kontakt" class="btn btn-orange" style="padding:11px 20px;font-size:14px;color:#fff">Offerte anfragen</a>
+    </nav>
+    <button class="menu-toggle" id="menuOpen" aria-label="Menü"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <div class="mmenu-bd" id="menuClose"></div>
+  <div class="mmenu-sheet">
+    <a href="index.html" data-close>Startseite</a>
+    <a href="dienstleistungen.html" data-close>Dienstleistungen</a>
+    <a href="index.html#ueber" data-close>Über uns</a>
+    <a href="index.html#team" data-close>Team</a>
+    <a href="index.html#kontakt" data-close>Kontakt</a>
   </div>
 </div>
 
@@ -228,8 +192,8 @@
 <section class="page-hero">
   <div class="wrap">
     <div class="crumb reveal"><a href="index.html">Start</a> › <span>Dienstleistungen</span></div>
-    <div class="badge-row reveal"><span class="br-num">01</span><span class="br-label">Unser Angebot</span></div>
-    <h1 class="h-display reveal d1">Absolute <span class="hl">Zuverlässigkeit</span> ist unser oberstes Gebot.</h1>
+    <span class="eyebrow reveal">Unser Angebot</span>
+    <h1 class="reveal d1">Absolute <em>Zuverlässigkeit</em> ist unser oberstes Gebot.</h1>
     <p class="lead reveal d2">Unser Dienstleistungsangebot ist sehr weit gefächert. Neben allgemeinen Elektroinstallationen sind wir Ihr kompetenter Ansprechpartner für Gebäudeinformatik, Beleuchtungskonzepte, Telekommunikation, Computervernetzung, Ladestationen für Elektroautos und Photovoltaik-Anlagen.</p>
     <div class="hero-img reveal d3">
       <img src="https://static.wixstatic.com/media/ebc23b_2374c10a98684cf5bace6e3977145906~mv2.jpg/v1/crop/x_0,y_176,w_8256,h_5153/fill/w_1200,h_500,al_c,q_85,enc_avif,quality_auto/dienstleistungen.jpg" alt="Aare Elektro Solothurn bei der Arbeit vor Ort">
@@ -247,21 +211,21 @@
 <section class="svc" id="elektroinstallationen">
   <div class="wrap row">
     <div class="media reveal">
-      <img src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/elektroinstallationen.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn">
+      <img loading="lazy" src="https://static.wixstatic.com/media/4b0beb_352fe0f9f32c4824aaf95b081dfff724~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/elektroinstallationen.jpg" alt="Elektroinstallationen durch Aare Elektro Solothurn">
     </div>
     <div class="reveal d1">
-      <span class="num-tag">01</span>
+      <div class="num">01 — Installation</div>
       <h2>Elektroinstallationen</h2>
       <p>Wir bieten Ihnen Lösungen nach Ihren Wünschen, welche den neusten Normen und Vorgaben entsprechen. Durch unsere Kontrolle garantieren und überwachen wir die Einhaltung sämtlicher Sicherheitsvorschriften.</p>
       <ul class="feats">
-        <li><span class="tick">✓</span> Maschinen- und Steckdoseninstallationen</li>
-        <li><span class="tick">✓</span> Beleuchtungsanlagen (Neuanlagen, Sanierungen, Energiesparkonzepte)</li>
-        <li><span class="tick">✓</span> Verkabelungen für den modernen Haushalt (XDSL, Internet, TV, Multimedia)</li>
-        <li><span class="tick">✓</span> Haustechniklösungen (KNX / Loxone)</li>
-        <li><span class="tick">✓</span> Gebäudeinformatik</li>
-        <li><span class="tick">✓</span> TV-Verkabelung</li>
-        <li><span class="tick">✓</span> Steuerungs- und Tableaubau</li>
-        <li><span class="tick">✓</span> Unterbruchsfreie Stromversorgung</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Maschinen- und Steckdoseninstallationen</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Beleuchtungsanlagen & Energiesparkonzepte</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Verkabelungen (XDSL, Internet, TV, Multimedia)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Haustechniklösungen (KNX / Loxone)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Gebäudeinformatik</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> TV-Verkabelung</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Steuerungs- und Tableaubau</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unterbruchsfreie Stromversorgung</li>
       </ul>
     </div>
   </div>
@@ -271,17 +235,17 @@
 <section class="svc rev" id="service">
   <div class="wrap row">
     <div class="media reveal">
-      <img src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/service.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn">
+      <img loading="lazy" src="https://static.wixstatic.com/media/4b0beb_d7b259c842814f4f947338a91cefc11c~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/service.jpg" alt="Elektro Service und Kundendienst in der Region Solothurn">
     </div>
     <div class="reveal d1">
-      <span class="num-tag">02</span>
-      <h2>Service und Kundendienst</h2>
+      <div class="num">02 — Service</div>
+      <h2>Service & Kundendienst</h2>
       <p>Unser Kundenservice behebt rasch und zuverlässig allfällige Störungen, Mängel, Reparaturen oder Installationen. Unsere Fahrzeuge sind alle mit den nötigen Materialien und Werkzeugen ausgerüstet, so dass wir Ihren Auftrag schnell und fachgerecht erledigen können.</p>
       <ul class="feats">
-        <li><span class="tick">✓</span> Rasche Behebung von Störungen</li>
-        <li><span class="tick">✓</span> Reparaturen & Mängelbehebung</li>
-        <li><span class="tick">✓</span> Kleininstallationen vor Ort</li>
-        <li><span class="tick">✓</span> Voll ausgerüstete Servicefahrzeuge</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Rasche Behebung von Störungen</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Reparaturen & Mängelbehebung</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Kleininstallationen vor Ort</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Voll ausgerüstete Servicefahrzeuge</li>
       </ul>
     </div>
   </div>
@@ -291,19 +255,19 @@
 <section class="svc" id="planung">
   <div class="wrap row">
     <div class="media reveal">
-      <img src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/planung.jpg" alt="Elektroplanung und Beratung Solothurn">
+      <img loading="lazy" src="https://static.wixstatic.com/media/ebc23b_1466619c24694c03ae60ce152e221bbc~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/planung.jpg" alt="Elektroplanung und Beratung Solothurn">
     </div>
     <div class="reveal d1">
-      <span class="num-tag">03</span>
-      <h2>Planung und Beratung</h2>
+      <div class="num">03 — Planung</div>
+      <h2>Planung & Beratung</h2>
       <p>Dank unseren umfassenden Kenntnissen der neusten Technologien planen wir alle Teilgebiete. Ihr Vorteil: Alle Arbeiten werden durch uns koordiniert, ausgeführt und überwacht – so haben Sie nur einen Ansprechpartner. Die Planung erfolgt mit Hilfe unserer modernen CAD-Anlage.</p>
       <ul class="feats">
-        <li><span class="tick">✓</span> Starkstrom</li>
-        <li><span class="tick">✓</span> Telekommunikation</li>
-        <li><span class="tick">✓</span> EDV-Verkabelung</li>
-        <li><span class="tick">✓</span> Beleuchtung</li>
-        <li><span class="tick">✓</span> Hausleitsysteme (KNX)</li>
-        <li><span class="tick">✓</span> Blitzschutzanlagen</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Starkstrom</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Telekommunikation</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> EDV-Verkabelung</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Beleuchtung</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Hausleitsysteme (KNX)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Blitzschutzanlagen</li>
       </ul>
     </div>
   </div>
@@ -313,36 +277,33 @@
 <section class="svc rev" id="it">
   <div class="wrap row">
     <div class="media reveal">
-      <img src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/it.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn">
+      <img loading="lazy" src="https://static.wixstatic.com/media/4b0beb_5218b4f6b87b49759d63315512957236~mv2.jpg/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/it.jpg" alt="Computervernetzung und Gebäudeinformatik Solothurn">
     </div>
     <div class="reveal d1">
-      <span class="num-tag">04</span>
+      <div class="num">04 — Gebäudeinformatik</div>
       <h2>Computervernetzung / Gebäudeinformatik</h2>
       <p>Die IT entwickelt sich rasant weiter. Mit stetigen Weiterbildungen bleiben wir auf dem aktuellen Stand und bieten umfassende Lösungen – vom einfachen Home-Office bis zu topmodernen Lösungen im Businessbereich.</p>
       <ul class="feats">
-        <li><span class="tick">✓</span> Büro- & Gebäudeverkabelungen (Kupfer Kat. 6/7 und Fiberoptik)</li>
-        <li><span class="tick">✓</span> Home-Verkabelung für Multimedia (Tel-PC-TV-SAT-Audio)</li>
-        <li><span class="tick">✓</span> Internet-Anschlüsse (ADSL, VDSL, Cable, Fibre)</li>
-        <li><span class="tick">✓</span> Telefonie über Internet (Voice over IP)</li>
-        <li><span class="tick">✓</span> Netzwerkkomponenten (Switch, Router, Firewall, WLAN)</li>
-        <li><span class="tick">✓</span> Videoüberwachungsanlagen</li>
-        <li><span class="tick">✓</span> Unterhalt & Betrieb von Privat- und Firmennetzwerken</li>
-        <li><span class="tick">✓</span> Beratung & Projektierung von Gesamtlösungen</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Büro- & Gebäudeverkabelungen (Kat. 6/7, Fiberoptik)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Home-Verkabelung (Tel-PC-TV-SAT-Audio)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Internet-Anschlüsse (ADSL, VDSL, Cable, Fibre)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Telefonie über Internet (Voice over IP)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Netzwerkkomponenten (Switch, Router, Firewall, WLAN)</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Videoüberwachungsanlagen</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unterhalt von Privat- und Firmennetzwerken</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Beratung & Projektierung von Gesamtlösungen</li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<div class="wrap">
-  <div class="cta-band reveal">
-    <h2>Brauchen Sie einen verlässlichen Elektriker in der Region Solothurn?</h2>
-    <a href="index.html#kontakt" class="btn-roll">
-      <span class="roll"><span>Jetzt Offerte anfragen</span><span>Jetzt Offerte anfragen</span></span>
-      <span class="arrow-circle"><svg class="ar" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
+<section class="cta">
+  <div class="wrap cta-in">
+    <h2 class="reveal">Brauchen Sie einen verlässlichen Elektriker in der Region Solothurn?</h2>
+    <a href="index.html#kontakt" class="btn reveal d1">Jetzt Offerte anfragen <svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
   </div>
-</div>
+</section>
 </main>
 
 <!-- FOOTER -->
@@ -350,15 +311,19 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="index.html" class="nav-logo" aria-label="Aare Elektro Solothurn">
-          <svg class="logo-svg" viewBox="0 0 268 66" xmlns="http://www.w3.org/2000/svg" role="img">
-            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F08000"/>
-            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="27" letter-spacing="0.5"><tspan fill="#ffffff">AARE </tspan><tspan fill="#F08000">ELEKTRO</tspan></text>
-            <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#c9ccd2">SOLOTHURN</text>
+        <a href="index.html" aria-label="Aare Elektro Solothurn">
+          <svg class="logo-svg" viewBox="0 0 340 66" xmlns="http://www.w3.org/2000/svg" role="img">
+            <path d="M44 2 L12 40 H29 L18 64 L54 24 H37 Z" fill="#F26F1F"/>
+            <text x="66" y="33" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="27" letter-spacing="0.5"><tspan fill="#fff">AARE </tspan><tspan fill="#F26F1F">ELEKTRO</tspan></text>
+            <text x="67" y="54" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="7.5" fill="#fff">SOLOTHURN</text>
           </svg>
         </a>
         <p>Ihr verlässlicher Elektropartner in der Region Solothurn – mit Leidenschaft und Freude am Beruf.</p>
-        <div class="socials"><a href="#" title="Facebook">f</a><a href="#" title="Instagram">ig</a><a href="#" title="LinkedIn">in</a></div>
+        <div class="socials">
+          <a href="https://www.facebook.com/Aareelektro" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/aareelektro/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/aare-elektro-solothurn-ag/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
       <div>
         <h4>Dienstleistungen</h4>
@@ -388,29 +353,16 @@
 
 <script>
   (function(){
-    var els = document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});return;}
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
-    els.forEach(function(el){ io.observe(el); });
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in')});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
   })();
-
-  function tick(){
-    var t = new Date().toLocaleTimeString('de-CH', {hour:'2-digit', minute:'2-digit', timeZone:'Europe/Zurich'});
-    var a = document.getElementById('clock'); if(a) a.textContent = t;
-    var b = document.getElementById('clock2'); if(b) b.textContent = t;
-  }
-  tick(); setInterval(tick, 1000);
-
-  var mm = document.getElementById('mobileMenu');
-  var open = document.getElementById('menuOpen');
-  var close = document.getElementById('menuClose');
-  if(open) open.addEventListener('click', function(){ mm.classList.add('open'); document.body.style.overflow='hidden'; });
-  function closeMenu(){ mm.classList.remove('open'); document.body.style.overflow=''; }
-  if(close) close.addEventListener('click', closeMenu);
-  document.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', closeMenu); });
+  var mm=document.getElementById('mmenu'),op=document.getElementById('menuOpen'),cl=document.getElementById('menuClose');
+  if(op)op.addEventListener('click',function(){mm.classList.add('open');document.body.style.overflow='hidden'});
+  function c(){mm.classList.remove('open');document.body.style.overflow=''}
+  if(cl)cl.addEventListener('click',c);
+  document.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',c)});
 </script>
-
 </body>
 </html>
