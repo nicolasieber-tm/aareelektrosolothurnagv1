@@ -150,6 +150,36 @@
   .socials{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
   .socials a{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
   .socials a:hover{color:var(--orange);border-color:var(--orange)}
+
+  /* ===== ANKER-OFFSET (fixierter Header) ===== */
+  section[id],[id]{scroll-margin-top:90px}
+
+  /* ===== MOBILE-OPTIMIERUNG ===== */
+  @media(max-width:767px){
+    .page-hero{padding:104px 0 48px}
+    .page-hero h1{font-size:clamp(2.2rem,8.5vw,3rem)}
+    .page-hero .lead{font-size:1rem}
+    .hero-img{margin-top:30px;aspect-ratio:16/9}
+    .chips{margin-top:26px}
+    .chip{padding:9px 15px;font-size:12.5px}
+    .svc{padding:56px 0}
+    .svc .row{gap:30px}
+    .svc h2{font-size:clamp(1.7rem,6vw,2.2rem)}
+    .svc p{font-size:15.5px;margin-bottom:22px}
+    .cta-in{padding:60px 0;gap:22px}
+    footer{padding:60px 0 32px}
+    .foot-grid{gap:32px}
+  }
+
+  /* Touch-Geräte: keine Hover-Verschiebung/Skalierung */
+  @media(hover:none){
+    .svc .media:hover img{transform:none}
+  }
+
+  /* iOS Safari: kein Auto-Zoom beim Fokussieren von Formularfeldern */
+  @media(max-width:1023px){
+    form input,form textarea{font-size:16px}
+  }
 </style>
 </head>
 <body>

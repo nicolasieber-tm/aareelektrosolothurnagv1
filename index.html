@@ -171,6 +171,9 @@
   .sec-head h2{font-size:clamp(2.2rem,5vw,4rem)}
   .sec-head h2 em{font-style:normal;color:var(--orange)}
   .sec-head .lead{color:var(--ink2);font-size:17px;max-width:42ch;font-weight:400}
+  .lead-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:600;font-size:15px;color:var(--ink);border-bottom:2px solid var(--orange);padding-bottom:3px;transition:gap .25s var(--ease),color .2s}
+  .lead-link:hover{color:var(--orange);gap:14px}
+  .lead-link .ic{width:16px;height:16px}
 
   /* ===== LEISTUNGEN (consolidated) ===== */
   .svc{border-top:1px solid var(--line)}
@@ -271,6 +274,46 @@
   .socials{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
   .socials a{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
   .socials a:hover{color:var(--orange);border-color:var(--orange)}
+
+  /* ===== ANKER-OFFSET (fixierter Header) ===== */
+  section[id],[id]{scroll-margin-top:90px}
+
+  /* ===== MOBILE-OPTIMIERUNG ===== */
+  @media(max-width:767px){
+    section{padding:64px 0}
+    .hero-left{padding:48px 24px 44px}
+    .hero h1{font-size:clamp(2.4rem,9vw,3.4rem)}
+    .hero .sub{font-size:1.05rem;margin-bottom:30px}
+    .hero-cta{gap:12px}
+    .hero-cta .btn{flex:1 1 auto;justify-content:center}
+    .hero-right{min-height:300px}
+    .hero-tag{padding:16px 20px;max-width:240px}
+    .hero-tag .v{font-size:1.15rem}
+    .stat{padding:26px 20px}
+    .stat .n{font-size:2.3rem}
+    .sec-head{margin-bottom:40px;gap:18px}
+    .svc-row{padding:26px 0}
+    .about-grid{gap:32px}
+    .about p{font-size:16px;margin-bottom:24px}
+    .subhead{margin:56px 0 26px;padding-top:36px}
+    .cta-in{gap:22px}
+    footer{padding:60px 0 32px}
+    .foot-grid{gap:32px}
+  }
+  @media(max-width:480px){
+    .hero-cta .btn{width:100%}
+    form .frow{grid-template-columns:1fr}
+  }
+
+  /* Touch-Geräte: keine Hover-Verschiebung */
+  @media(hover:none){
+    .svc-row:hover{padding-left:0}
+  }
+
+  /* iOS Safari: kein Auto-Zoom beim Fokussieren von Formularfeldern */
+  @media(max-width:1023px){
+    form input,form textarea{font-size:16px}
+  }
 </style>
 </head>
 <body>
@@ -286,7 +329,7 @@
       </svg>
     </a>
     <nav class="nav-links">
-      <a href="#leistungen">Dienstleistungen</a>
+      <a href="dienstleistungen.html">Dienstleistungen</a>
       <a href="#ueber">Über uns</a>
       <a href="#team">Team</a>
       <a href="#kontakt">Kontakt</a>
@@ -299,7 +342,7 @@
 <div class="mmenu" id="mmenu">
   <div class="mmenu-bd" id="menuClose"></div>
   <div class="mmenu-sheet">
-    <a href="#leistungen" data-close>Dienstleistungen</a>
+    <a href="dienstleistungen.html" data-close>Dienstleistungen</a>
     <a href="#ueber" data-close>Über uns</a>
     <a href="#team" data-close>Team</a>
     <a href="#kontakt" data-close>Kontakt</a>
@@ -349,7 +392,10 @@
         <div class="sec-num">01 — Dienstleistungen</div>
         <h2>Alles aus<br><em>einer Hand</em>.</h2>
       </div>
-      <p class="lead reveal d1">Von der ersten Beratung über die Installation bis zum laufenden Unterhalt – ein Ansprechpartner für Ihr ganzes Elektroprojekt.</p>
+      <div class="reveal d1">
+        <p class="lead">Von der ersten Beratung über die Installation bis zum laufenden Unterhalt – ein Ansprechpartner für Ihr ganzes Elektroprojekt.</p>
+        <a href="dienstleistungen.html" class="lead-link">Alle Dienstleistungen ansehen <svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
     </div>
     <div class="svc">
       <a class="svc-row reveal" href="dienstleistungen.html#elektroinstallationen">
