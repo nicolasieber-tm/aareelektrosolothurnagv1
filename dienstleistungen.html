@@ -180,6 +180,58 @@
   @media(max-width:1023px){
     form input,form textarea{font-size:16px}
   }
+
+  /* ===== Basis-Formularfelder (für Wizard) ===== */
+  form label{font-size:13px;font-weight:600;display:block;margin:18px 0 8px;color:var(--ink2)}
+  form input,form textarea{width:100%;padding:15px 16px;border:1.5px solid var(--line);font-family:inherit;font-size:15px;background:#fff;color:var(--ink);transition:border .2s}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--orange)}
+  form .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* ===== OFFERTE-WIZARD (Overlay) ===== */
+  .qm{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+  .qm.open{display:flex}
+  .qm-bd{position:absolute;inset:0;background:rgba(14,15,18,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+  .qm-sheet{position:relative;width:100%;max-width:560px;max-height:92vh;background:#fff;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.32);animation:qmIn .35s var(--ease)}
+  @keyframes qmIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.qm-sheet{animation:none}}
+  .qm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:26px 28px 16px}
+  .qm-eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+  .qm-count{font-size:13px;color:var(--grey);font-weight:600;margin-top:6px}
+  .qm-x{flex:0 0 40px;width:40px;height:40px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;border-radius:50%;color:var(--ink);transition:border-color .2s,color .2s}
+  .qm-x:hover{border-color:var(--orange);color:var(--orange)}
+  .qm-x svg{width:18px;height:18px}
+  .qm-prog{height:4px;background:var(--line);margin:0 28px}
+  .qm-prog span{display:block;height:100%;width:25%;background:var(--orange);transition:width .35s var(--ease)}
+  .qm-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 28px}
+  .qm-q{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:18px}
+  .qm-q.mt{margin-top:30px}
+  .qm-hint{font-size:13px;font-weight:500;color:var(--grey);letter-spacing:0}
+  .qm-opts{display:grid;gap:12px}
+  .qm-opts.cols-2{grid-template-columns:1fr 1fr}
+  .opt{display:flex;align-items:center;gap:12px;padding:15px 18px;border:1.5px solid var(--line);background:#fff;font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .15s}
+  .opt:hover{border-color:var(--orange);transform:translateY(-1px)}
+  .opt.sel{border-color:var(--orange);background:rgba(242,111,31,.08)}
+  .opt.sel::after{content:"✓";margin-left:auto;color:var(--orange);font-weight:800}
+  .opt-ic{font-size:1.25rem;line-height:1;flex:0 0 auto}
+  .qm-err{color:var(--orange-d);font-size:13px;font-weight:600;margin-top:14px;display:none}
+  .qm-err.show{display:block}
+  .qm-foot{display:flex;align-items:center;gap:12px;padding:18px 28px 24px;border-top:1px solid var(--line)}
+  .qm-foot .btn{font-size:14px;padding:13px 22px}
+  .qm-next{margin-left:auto}
+  .qm-done{text-align:center;padding:14px 0 6px}
+  .qm-done-ic{width:66px;height:66px;border-radius:50%;background:var(--orange);color:#fff;font-size:2rem;display:grid;place-items:center;margin:0 auto 20px;font-weight:800}
+  .qm-done p{color:var(--ink2);font-size:15px;max-width:38ch;margin:0 auto;line-height:1.6}
+  .qm form label{margin-top:14px}
+  .qm form label:first-child{margin-top:0}
+  @media(max-width:480px){
+    .qm{padding:0;align-items:flex-end}
+    .qm-sheet{max-width:none;max-height:94vh}
+    .qm-head{padding:22px 20px 14px}
+    .qm-prog{margin:0 20px}
+    .qm-body{padding:20px}
+    .qm-foot{padding:16px 20px 22px}
+    .qm-opts.cols-2{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -200,7 +252,7 @@
       <a href="index.html#ueber">Über uns</a>
       <a href="index.html#team">Team</a>
       <a href="index.html#kontakt">Kontakt</a>
-      <a href="index.html#kontakt" class="btn btn-orange" style="padding:11px 20px;font-size:14px;color:#fff">Offerte anfragen</a>
+      <a href="index.html#kontakt" data-quote-open class="btn btn-orange" style="padding:11px 20px;font-size:14px;color:#fff">Offerte anfragen</a>
     </nav>
     <button class="menu-toggle" id="menuOpen" aria-label="Menü"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
   </div>
@@ -331,7 +383,7 @@
 <section class="cta">
   <div class="wrap cta-in">
     <h2 class="reveal">Brauchen Sie einen verlässlichen Elektriker in der Region Solothurn?</h2>
-    <a href="index.html#kontakt" class="btn reveal d1">Jetzt Offerte anfragen <svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    <a href="index.html#kontakt" data-quote-open class="btn reveal d1">Jetzt Offerte anfragen <svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
   </div>
 </section>
 </main>
@@ -381,6 +433,93 @@
   </div>
 </footer>
 
+<!-- OFFERTE-WIZARD -->
+<div class="qm" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qmHeading" aria-hidden="true">
+  <div class="qm-bd" data-qm-close></div>
+  <div class="qm-sheet">
+    <div class="qm-head">
+      <div>
+        <div class="qm-eyebrow" id="qmHeading">Offerte anfragen</div>
+        <div class="qm-count" id="qmCount">Schritt 1 von 4</div>
+      </div>
+      <button class="qm-x" type="button" data-qm-close aria-label="Schliessen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="qm-prog"><span id="qmBar"></span></div>
+
+    <form id="qmForm" class="qm-body" novalidate>
+      <!-- 1 Kundentyp -->
+      <div class="qm-step" data-step="1">
+        <div class="qm-q">Für wen ist das Projekt?</div>
+        <div class="qm-opts cols-2" data-group="Kundentyp" data-single>
+          <button type="button" class="opt" data-val="Privat"><span class="opt-ic">🏠</span> Privat</button>
+          <button type="button" class="opt" data-val="Gewerbe"><span class="opt-ic">🏢</span> Gewerbe</button>
+          <button type="button" class="opt" data-val="Verwaltung"><span class="opt-ic">🏛️</span> Verwaltung</button>
+          <button type="button" class="opt" data-val="Industrie"><span class="opt-ic">🏭</span> Industrie</button>
+        </div>
+      </div>
+
+      <!-- 2 Leistung (Mehrfach) -->
+      <div class="qm-step" data-step="2" hidden>
+        <div class="qm-q">Welche Leistung benötigen Sie? <span class="qm-hint">(Mehrfachauswahl)</span></div>
+        <div class="qm-opts cols-2" data-group="Leistung">
+          <button type="button" class="opt" data-val="Elektroinstallation"><span class="opt-ic">⚡</span> Elektroinstallation</button>
+          <button type="button" class="opt" data-val="Service / Reparatur"><span class="opt-ic">🔧</span> Service / Reparatur</button>
+          <button type="button" class="opt" data-val="Planung & Beratung"><span class="opt-ic">📐</span> Planung & Beratung</button>
+          <button type="button" class="opt" data-val="Gebäudeinformatik"><span class="opt-ic">🖧</span> Gebäudeinformatik</button>
+          <button type="button" class="opt" data-val="Beleuchtung"><span class="opt-ic">💡</span> Beleuchtung</button>
+          <button type="button" class="opt" data-val="Ladestation / PV"><span class="opt-ic">🔌</span> Ladestation / PV</button>
+        </div>
+      </div>
+
+      <!-- 3 Projektart + Dringlichkeit -->
+      <div class="qm-step" data-step="3" hidden>
+        <div class="qm-q">Um welche Art Projekt geht es?</div>
+        <div class="qm-opts cols-2" data-group="Projektart" data-single>
+          <button type="button" class="opt" data-val="Neubau"><span class="opt-ic">🏗️</span> Neubau</button>
+          <button type="button" class="opt" data-val="Umbau / Sanierung"><span class="opt-ic">🔨</span> Umbau / Sanierung</button>
+          <button type="button" class="opt" data-val="Störung / Notfall"><span class="opt-ic">⚠️</span> Störung / Notfall</button>
+          <button type="button" class="opt" data-val="Beratung"><span class="opt-ic">💬</span> Beratung</button>
+        </div>
+        <div class="qm-q mt">Wie dringend ist es?</div>
+        <div class="qm-opts cols-2" data-group="Dringlichkeit" data-single>
+          <button type="button" class="opt" data-val="Notfall (sofort)"><span class="opt-ic">🚨</span> Notfall (sofort)</button>
+          <button type="button" class="opt" data-val="1–4 Wochen"><span class="opt-ic">📆</span> 1–4 Wochen</button>
+          <button type="button" class="opt" data-val="1–3 Monate"><span class="opt-ic">🗓️</span> 1–3 Monate</button>
+          <button type="button" class="opt" data-val="Nur Information"><span class="opt-ic">ℹ️</span> Nur Information</button>
+        </div>
+      </div>
+
+      <!-- 4 Kontakt -->
+      <div class="qm-step" data-step="4" hidden>
+        <div class="qm-q">Ihre Kontaktdaten</div>
+        <div class="frow">
+          <div><label>Vorname</label><input type="text" name="vorname" placeholder="Vorname"></div>
+          <div><label>Nachname</label><input type="text" name="nachname" placeholder="Nachname"></div>
+        </div>
+        <label>Telefon</label><input type="tel" name="tel" placeholder="0XX XXX XX XX">
+        <label>E-Mail</label><input type="email" name="email" placeholder="ihre@email.ch">
+        <label>PLZ / Ort</label><input type="text" name="ort" placeholder="4562 Biberist">
+        <label>Nachricht (optional)</label><textarea name="nachricht" rows="3" placeholder="Beschreiben Sie kurz Ihr Anliegen …"></textarea>
+        <div class="qm-err" id="qmErr">Bitte Name und Telefon oder E-Mail angeben.</div>
+      </div>
+
+      <!-- Fertig -->
+      <div class="qm-step qm-done" data-step="done" hidden>
+        <div class="qm-done-ic">✓</div>
+        <div class="qm-q" style="margin-bottom:12px">Vielen Dank!</div>
+        <p>Wir haben Ihre Anfrage erhalten und melden uns schnellstmöglich bei Ihnen – in der Regel innert eines Arbeitstages.</p>
+      </div>
+    </form>
+
+    <div class="qm-foot" id="qmFoot">
+      <button type="button" class="btn btn-out" id="qmBack">Zurück</button>
+      <button type="button" class="btn btn-orange qm-next" id="qmNext">Weiter <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
 <script>
   (function(){
     var els=document.querySelectorAll('.reveal');
@@ -393,6 +532,104 @@
   function c(){mm.classList.remove('open');document.body.style.overflow=''}
   if(cl)cl.addEventListener('click',c);
   document.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',c)});
+
+  /* ===== Offerte-Wizard ===== */
+  (function(){
+    var modal=document.getElementById('quoteModal');
+    if(!modal)return;
+    var form=document.getElementById('qmForm'),
+        steps=[].slice.call(form.querySelectorAll('.qm-step')),
+        bar=document.getElementById('qmBar'),
+        count=document.getElementById('qmCount'),
+        foot=document.getElementById('qmFoot'),
+        back=document.getElementById('qmBack'),
+        next=document.getElementById('qmNext'),
+        err=document.getElementById('qmErr'),
+        TOTAL=4,cur=1,lastFocus=null;
+
+    function stepEl(n){return form.querySelector('.qm-step[data-step="'+n+'"]')}
+    function show(n){
+      cur=n;
+      steps.forEach(function(s){s.hidden=(s.getAttribute('data-step')!==String(n))});
+      bar.style.width=(n/TOTAL*100)+'%';
+      count.textContent='Schritt '+n+' von '+TOTAL;
+      back.style.visibility=n>1?'visible':'hidden';
+      next.innerHTML=(n===TOTAL?'Anfrage senden':'Weiter')+' <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      if(err)err.classList.remove('show');
+      form.scrollTop=0;
+    }
+    function reset(){
+      form.querySelectorAll('.opt.sel').forEach(function(o){o.classList.remove('sel');o.setAttribute('aria-pressed','false')});
+      form.reset();
+      foot.style.display='';
+      show(1);
+    }
+    function open(){
+      lastFocus=document.activeElement;
+      reset();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function close(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      if(lastFocus&&lastFocus.focus)lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-quote-open]').forEach(function(b){
+      b.addEventListener('click',function(e){e.preventDefault();open()});
+    });
+    modal.querySelectorAll('[data-qm-close]').forEach(function(b){b.addEventListener('click',close)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close()});
+
+    /* Auswahl-Kacheln */
+    form.querySelectorAll('.qm-opts').forEach(function(group){
+      var single=group.hasAttribute('data-single');
+      group.querySelectorAll('.opt').forEach(function(opt){
+        opt.setAttribute('aria-pressed','false');
+        opt.addEventListener('click',function(){
+          if(single){
+            group.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel');o.setAttribute('aria-pressed','false')});
+            opt.classList.add('sel');opt.setAttribute('aria-pressed','true');
+          }else{
+            var on=opt.classList.toggle('sel');
+            opt.setAttribute('aria-pressed',on?'true':'false');
+          }
+        });
+      });
+    });
+
+    function valid(n){
+      var step=stepEl(n);
+      var groups=step.querySelectorAll('.qm-opts');
+      for(var i=0;i<groups.length;i++){if(!groups[i].querySelector('.opt.sel'))return false}
+      if(n===4){
+        var nm=(form.vorname.value+form.nachname.value).trim();
+        var tel=form.tel.value.trim(),mail=form.email.value.trim();
+        if(!nm||(!tel&&!mail))return false;
+      }
+      return true;
+    }
+    function done(){
+      steps.forEach(function(s){s.hidden=(s.getAttribute('data-step')!=='done')});
+      foot.style.display='none';
+      bar.style.width='100%';
+      count.textContent='Fertig';
+    }
+
+    next.addEventListener('click',function(){
+      if(!valid(cur)){
+        if(cur===4&&err)err.classList.add('show');
+        modal.querySelector('.qm-sheet').animate&&modal.querySelector('.qm-sheet').animate(
+          [{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:240});
+        return;
+      }
+      if(cur<TOTAL)show(cur+1);else done();
+    });
+    back.addEventListener('click',function(){if(cur>1)show(cur-1)});
+  })();
 </script>
 </body>
 </html>
