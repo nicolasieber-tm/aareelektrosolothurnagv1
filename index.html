@@ -275,6 +275,60 @@
   .socials a{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
   .socials a:hover{color:var(--orange);border-color:var(--orange)}
 
+  /* ===== PARTNER-LOGOS (Trust-Band) ===== */
+  .partners{border-bottom:1px solid var(--line);padding:30px 0}
+  .partners-in{display:flex;align-items:center;gap:30px 40px;flex-wrap:wrap;justify-content:center}
+  .partners .pl-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);flex:0 0 auto}
+  .partners .pl-logos{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
+  .partners .pl{font-size:1.3rem;font-weight:800;letter-spacing:-.03em;color:var(--ink);opacity:.4;transition:opacity .25s,color .25s}
+  .partners .pl:hover{opacity:1;color:var(--orange)}
+
+  /* ===== SO ARBEITEN WIR (Ablauf) ===== */
+  .process{background:var(--bg2)}
+  .proc-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:560px){.proc-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1024px){.proc-grid{grid-template-columns:repeat(4,1fr)}}
+  .proc-step{position:relative;padding:38px 30px 34px;background:#fff;border:1px solid var(--line);transition:border-color .3s var(--ease),transform .3s var(--ease)}
+  .proc-step:hover{border-color:var(--orange);transform:translateY(-4px)}
+  .proc-step .pn{font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--orange)}
+  .proc-step .pic{width:54px;height:54px;display:grid;place-items:center;margin:22px 0 22px;border-radius:50%;background:var(--bg2);color:var(--orange);transition:background .3s,color .3s}
+  .proc-step:hover .pic{background:var(--orange);color:#fff}
+  .proc-step .pic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .proc-step h3{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+  .proc-step p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* ===== REFERENZEN (Objekte) ===== */
+  .refs-grid{display:grid;grid-template-columns:1fr;gap:24px}
+  @media(min-width:680px){.refs-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.refs-grid{grid-template-columns:repeat(3,1fr)}}
+  .ref{position:relative;overflow:hidden;border:1px solid var(--line);background:#fff;transition:border-color .3s}
+  .ref:hover{border-color:var(--orange)}
+  .ref-media{aspect-ratio:4/3;background:var(--bg2);position:relative;overflow:hidden}
+  .ref-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
+  .ref:hover .ref-media img{transform:scale(1.05)}
+  .ref-ph{position:absolute;inset:0;display:grid;place-items:center;color:#c2c6cc}
+  .ref-ph svg{width:54px;height:54px;stroke:currentColor;fill:none;stroke-width:1.3}
+  .ref-tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--orange);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+  .ref-body{padding:24px}
+  .ref-body h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .ref-body .loc{display:flex;align-items:center;gap:7px;color:var(--grey);font-size:14px;margin-top:10px}
+  .ref-body .loc svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;flex:0 0 auto}
+
+  /* ===== KUNDENSTIMMEN ===== */
+  .tst{margin-top:80px;border-top:1px solid var(--line);padding-top:54px}
+  .tst .subhead{margin:0 0 40px;border-top:0;padding-top:0}
+  .tst-grid{display:grid;grid-template-columns:1fr;gap:24px}
+  @media(min-width:768px){.tst-grid{grid-template-columns:repeat(3,1fr)}}
+  .tcard{border:1px solid var(--line);padding:34px 30px;display:flex;flex-direction:column;transition:border-color .3s}
+  .tcard:hover{border-color:var(--orange)}
+  .stars{display:flex;gap:3px;color:var(--orange);margin-bottom:20px}
+  .stars svg{width:18px;height:18px;fill:currentColor}
+  .tcard blockquote{font-size:16px;line-height:1.65;color:var(--ink);font-weight:500;margin-bottom:24px;flex:1 1 auto}
+  .tcard .who{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:20px}
+  .tcard .who .av{width:46px;height:46px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;flex:0 0 auto}
+  .tcard .who .nm{font-weight:700;font-size:15px}
+  .tcard .who .rl{color:var(--grey);font-size:13px;margin-top:2px}
+
   /* ===== ANKER-OFFSET (fixierter Header) ===== */
   section[id],[id]{scroll-margin-top:90px}
 
@@ -302,6 +356,13 @@
     .cta-in{gap:22px}
     footer{padding:60px 0 32px}
     .foot-grid{gap:32px}
+    .partners{padding:24px 0}
+    .partners-in{gap:18px 26px}
+    .partners .pl-logos{gap:22px}
+    .partners .pl{font-size:1.05rem;opacity:.55}
+    .proc-step{padding:30px 24px 28px}
+    .tst{margin-top:56px;padding-top:40px}
+    .tcard{padding:28px 24px}
   }
   @media(max-width:480px){
     .hero-cta .btn{width:100%}
@@ -379,8 +440,9 @@
     </a>
     <nav class="nav-links">
       <a href="dienstleistungen.html">Dienstleistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#referenzen">Referenzen</a>
       <a href="#ueber">Über uns</a>
-      <a href="#team">Team</a>
       <a href="#kontakt">Kontakt</a>
       <a href="#kontakt" data-quote-open class="btn btn-orange" style="padding:11px 20px;font-size:14px;color:#fff">Offerte anfragen</a>
     </nav>
@@ -392,8 +454,9 @@
   <div class="mmenu-bd" id="menuClose"></div>
   <div class="mmenu-sheet">
     <a href="dienstleistungen.html" data-close>Dienstleistungen</a>
+    <a href="#ablauf" data-close>Ablauf</a>
+    <a href="#referenzen" data-close>Referenzen</a>
     <a href="#ueber" data-close>Über uns</a>
-    <a href="#team" data-close>Team</a>
     <a href="#kontakt" data-close>Kontakt</a>
   </div>
 </div>
@@ -429,6 +492,22 @@
       <div class="stat reveal d1"><div class="n">100<em>%</em></div><div class="l">Verwurzelt in Solothurn</div></div>
       <div class="stat reveal d2"><div class="n">Eidg.</div><div class="l">Dipl. Fachleute im Team</div></div>
       <div class="stat reveal d3"><div class="n">Mo–Fr</div><div class="l">07:30 – 17:00 erreichbar</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER-LOGOS (Trust-Band) -->
+<!-- Platzhalter-Wortmarken: bei Bedarf durch echte Logo-Grafiken (SVG/PNG) der Lieferanten ersetzen -->
+<div class="partners">
+  <div class="wrap">
+    <div class="partners-in reveal">
+      <span class="pl-label">Wir setzen auf Markenqualität</span>
+      <div class="pl-logos">
+        <span class="pl">Feller</span>
+        <span class="pl">ABB</span>
+        <span class="pl">Hager</span>
+        <span class="pl">Legrand</span>
+      </div>
     </div>
   </div>
 </div>
@@ -487,6 +566,47 @@
   </div>
 </section>
 
+<!-- SO ARBEITEN WIR -->
+<section class="process" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="sec-num">02 — Ablauf</div>
+        <h2>So arbeiten<br><em>wir</em>.</h2>
+      </div>
+      <div class="reveal d1">
+        <p class="lead">Von der ersten Anfrage bis zum fertigen Projekt – ein klarer, transparenter Ablauf mit nur einem Ansprechpartner.</p>
+      </div>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step reveal">
+        <div class="pn">/ 01</div>
+        <div class="pic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <h3>Beratung & Aufnahme</h3>
+        <p>Sie schildern Ihr Anliegen – wir hören zu, schauen vor Ort vorbei und beraten Sie fachkundig.</p>
+      </div>
+      <div class="proc-step reveal d1">
+        <div class="pn">/ 02</div>
+        <div class="pic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <h3>Offerte & Planung</h3>
+        <p>Sie erhalten eine transparente Offerte und eine saubere Planung – ohne versteckte Kosten.</p>
+      </div>
+      <div class="proc-step reveal d2">
+        <div class="pn">/ 03</div>
+        <div class="pic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6.6 6.6a1.5 1.5 0 0 0 2.1 2.1l6.6-6.6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-2.1z"/></svg></div>
+        <h3>Saubere Ausführung</h3>
+        <p>Termintreu und normgerecht – unsere Fachleute setzen Ihr Projekt zuverlässig und sauber um.</p>
+      </div>
+      <div class="proc-step reveal d3">
+        <div class="pn">/ 04</div>
+        <div class="pic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Abnahme & Service</h3>
+        <p>Geprüfte Übergabe inklusive Messprotokoll – und bei Bedarf langfristiger Unterhalt und Service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ÜBER UNS & TEAM -->
 <section class="about" id="ueber">
   <div class="wrap">
@@ -495,7 +615,7 @@
         <img loading="lazy" src="https://static.wixstatic.com/media/ebc23b_48d5c220a24848a0b3f7d49d676cfc09~mv2.jpg/v1/fill/w_900,h_640,al_c,q_85,enc_avif,quality_auto/Imagebilder_Aareelektro_2022_Team_und_Portrait__083.jpg" alt="Das Team der Aare Elektro Solothurn AG">
       </div>
       <div class="reveal d1">
-        <div class="sec-num">02 — Über uns</div>
+        <div class="sec-num">03 — Über uns</div>
         <h2>Leidenschaft und<br>Freude am Beruf.</h2>
         <p>Mit Leidenschaft, Berufsstolz, Einsatzwillen, Spass und Motivation gehen wir unserem Beruf nach. Als Team stellen wir uns allen Anforderungen und Herausforderungen unserer Branche. Innovation und Weiterentwicklung werden bei uns gross geschrieben – unser Ziel: eine zufriedene Kundschaft.</p>
         <ul class="checks">
@@ -509,7 +629,7 @@
 
     <!-- Unser Team (Geschäftsleitung + Mitarbeitende gemeinsam) -->
     <div class="subhead reveal" id="team">
-      <div class="sec-num">03 — Unser Team</div>
+      <div class="sec-num">04 — Unser Team</div>
       <h3>Ein Team, das anpackt.</h3>
     </div>
     <div class="team-grid staff">
@@ -542,6 +662,102 @@
   </div>
 </section>
 
+<!-- REFERENZEN & KUNDENSTIMMEN -->
+<section id="referenzen">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <div class="sec-num">05 — Referenzen</div>
+        <h2>Unsere Arbeit<br>spricht für <em>sich</em>.</h2>
+      </div>
+      <div class="reveal d1">
+        <p class="lead">Ein Auszug aus realisierten Projekten in der Region Solothurn – vom Einfamilienhaus bis zum Gewerbeobjekt.</p>
+        <a href="#kontakt" data-quote-open class="lead-link">Eigenes Projekt anfragen <svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Objekte: Bild-Platzhalter durch echte Projektfotos ersetzen (img einkommentieren) -->
+    <div class="refs-grid">
+      <article class="ref reveal">
+        <div class="ref-media">
+          <span class="ref-tag">Neubau</span>
+          <!-- <img loading="lazy" src="images/ref-neubau.jpg" alt="Komplettinstallation Einfamilienhaus Biberist"> -->
+          <span class="ref-ph"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+        </div>
+        <div class="ref-body">
+          <h3>Einfamilienhaus — Komplettinstallation</h3>
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Biberist</div>
+        </div>
+      </article>
+      <article class="ref reveal d1">
+        <div class="ref-media">
+          <span class="ref-tag">Sanierung</span>
+          <!-- <img loading="lazy" src="images/ref-sanierung.jpg" alt="Elektrosanierung Wohnüberbauung Solothurn"> -->
+          <span class="ref-ph"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10h16v11M9 21v-5h6v5M4 10l8-6 8 6"/></svg></span>
+        </div>
+        <div class="ref-body">
+          <h3>Wohnüberbauung — Elektrosanierung</h3>
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Solothurn</div>
+        </div>
+      </article>
+      <article class="ref reveal d2">
+        <div class="ref-media">
+          <span class="ref-tag">Gewerbe</span>
+          <!-- <img loading="lazy" src="images/ref-gewerbe.jpg" alt="Beleuchtung und Netzwerk Ladenlokal Zuchwil"> -->
+          <span class="ref-ph"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></svg></span>
+        </div>
+        <div class="ref-body">
+          <h3>Ladenlokal — Beleuchtung & Netzwerk</h3>
+          <div class="loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Zuchwil</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Kundenstimmen — Platzhaltertexte durch echte Bewertungen ersetzen -->
+    <div class="tst">
+      <div class="subhead reveal">
+        <div class="sec-num">Kundenstimmen</div>
+        <h3>Was unsere Kunden sagen.</h3>
+      </div>
+      <div class="tst-grid">
+        <figure class="tcard reveal">
+          <div class="stars" aria-label="5 von 5 Sternen">
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          </div>
+          <blockquote>„Schnell, sauber und absolut zuverlässig. Bei einer Störung am Wochenende war innert kürzester Zeit jemand vor Ort.“</blockquote>
+          <figcaption class="who"><span class="av">FB</span><div><div class="nm">Familie Berger</div><div class="rl">Privatkunde · Biberist</div></div></figcaption>
+        </figure>
+        <figure class="tcard reveal d1">
+          <div class="stars" aria-label="5 von 5 Sternen">
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          </div>
+          <blockquote>„Vom ersten Beratungsgespräch bis zur Abnahme alles aus einer Hand – termintreu und zu fairen Konditionen.“</blockquote>
+          <figcaption class="who"><span class="av">TK</span><div><div class="nm">Thomas Käser</div><div class="rl">Bauleitung · Solothurn</div></div></figcaption>
+        </figure>
+        <figure class="tcard reveal d2">
+          <div class="stars" aria-label="5 von 5 Sternen">
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          </div>
+          <blockquote>„Unser Ladenlokal wurde komplett neu verkabelt und beleuchtet. Kompetent, freundlich und immer mitdenkend.“</blockquote>
+          <figcaption class="who"><span class="av">SM</span><div><div class="nm">S. Marti</div><div class="rl">Geschäftsleitung · Zuchwil</div></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta">
   <div class="wrap cta-in">
@@ -555,7 +771,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="reveal">
-        <div class="sec-num">04 — Kontakt</div>
+        <div class="sec-num">06 — Kontakt</div>
         <h2>Reden wir über<br>Ihr <em>Projekt</em>.</h2>
       </div>
     </div>
@@ -603,6 +819,8 @@
         <ul>
           <li><a href="#start">Start</a></li>
           <li><a href="dienstleistungen.html">Dienstleistungen</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#referenzen">Referenzen</a></li>
           <li><a href="#ueber">Über uns</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
